@@ -5,7 +5,11 @@ import {
   Switch,
   NavLink
 } from 'react-router-dom'
+
 import '../styles/navbar.css';
+import Tasks from '../components/tasks/Tasks'
+import AddTask from '../components/tasks/AddTask'
+
 
 class App extends Component {
   render() {
@@ -17,13 +21,16 @@ class App extends Component {
               <ul className="uk-navbar-nav">
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/signin">Sign In</NavLink></li>
-                <li><NavLink to="/">Add Task</NavLink></li>
+                <li><NavLink to="/tasks/new">Add Task</NavLink></li>
+                <li><NavLink to="/tasks">View Tasks</NavLink></li>
               </ul>
             </div>
           </nav>  
           <Switch>
             <Route exact path = "/" />
-            {/*<Route exact path = "/signup" component={Signup}/>*/}
+              <Route path = "/tasks/new" component={AddTask}/>
+            <Route path = "/tasks" component={Tasks}/>
+
             <Route  />
           </Switch>
         </div>
