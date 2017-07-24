@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router, 
   Route, 
   Switch,
-  Link
+  NavLink
 } from 'react-router-dom'
 import './styles/navbar.css';
 
@@ -15,9 +15,9 @@ class App extends Component {
           <nav className="uk-navbar">
             <div className="uk-navbar-flip">
               <ul className="uk-navbar-nav">
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/signin">Sign In</Link></li>
-                <li><Link to="/">Add Task</Link></li>
+                <li><NavLink to="/">Home</NavLink></li>
+                <li><NavLink to="/signin">Sign In</NavLink></li>
+                <li><NavLink to="/">Add Task</NavLink></li>
               </ul>
             </div>
           </nav>  
