@@ -1,11 +1,9 @@
 export default function addClient(state = {
-  name: '', 
-  email: ''
+  name: '', email: ''
 }, action) {
   switch (action.type) {
     case 'ADD_CLIENT':
-      debugger
- 
+      Object.assign({}, state.client)
     default:
       return state;
   }
