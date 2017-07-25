@@ -3,9 +3,12 @@ import thunk from 'redux-thunk'
 import {reducer as form } from 'redux-form'
 
 import fetchingTasks from '../reducers/fetchingTasksReducer'
+import addClient from '../reducers/addClient'
+import addProject from '../reducers/addProject'
+import addTask from '../reducers/addTask'
 
 const reducers = combineReducers({
-  form, fetchingTasks
+  form, fetchingTasks, addClient, addProject, addTask
 })
 
 const middleware = [thunk]
