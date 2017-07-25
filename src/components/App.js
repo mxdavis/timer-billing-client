@@ -6,10 +6,11 @@ import {
   NavLink
 } from 'react-router-dom'
 
-import '../styles/navbar.css';
-import Tasks from '../components/tasks/Tasks'
-import AddTask from '../components/tasks/AddTask'
-
+import '../styles/navbar.css'
+import Tasks from './tasks/Tasks'
+import AddTask from './tasks/AddTask'
+import AddClient from './clients/AddClient'
+import AddProject from './projects/AddProject'
 
 class App extends Component {
   render() {
@@ -21,16 +22,17 @@ class App extends Component {
               <ul className="uk-navbar-nav">
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/signin">Sign In</NavLink></li>
-                <li><NavLink to="/tasks/new">Add Task</NavLink></li>
-                <li><NavLink to="/tasks">View Tasks</NavLink></li>
+                <li><NavLink to="/">Add Task</NavLink></li>
+                <li><NavLink to="/clients/new">Add Client</NavLink></li>
               </ul>
             </div>
           </nav>  
           <Switch>
             <Route exact path = "/" />
-              <Route path = "/tasks/new" component={AddTask}/>
+            <Route path = "/tasks/new" component={AddTask}/>
             <Route path = "/tasks" component={Tasks}/>
-
+            <Route path = "/projects/new" component={AddProject}/>
+            <Route path = "/clients/new" component={AddClient}/>
             <Route  />
           </Switch>
         </div>
