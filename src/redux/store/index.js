@@ -2,8 +2,10 @@ import {createStore, applyMiddleware, combineReducers } from 'redux'
 import thunk from 'redux-thunk'
 import {reducer as form } from 'redux-form'
 
+import fetchingTasks from '../reducers/fetchingTasksReducer'
+
 const reducers = combineReducers({
-  form, 
+  form, fetchingTasks
 })
 
 const middleware = [thunk]
