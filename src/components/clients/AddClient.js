@@ -61,8 +61,7 @@ class AddClient extends Component {
 
 const mapStateToProps = state => {
   return { 
-    name: state.client.name,
-    email: state.client.email
+    clients: state.clients
   }
 }
 
@@ -70,8 +69,7 @@ const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { 
     addClient
-    }
-  , dispatch);
+    }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddClient);
