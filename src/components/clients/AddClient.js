@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import { addClient } from '../../redux/actions/addClient'
+import apiRequest from '../../redux/modules/apiRequests'
 
 class AddClient extends Component {
 
@@ -13,28 +14,29 @@ class AddClient extends Component {
     }
   }
   
-
   handleOnSubmit = event => {
     event.preventDefault();
     const { addClient, history } = this.props
     addClient(this.state);
-    this.saveClient(this.state)
+    apiRequest.post('clients/', this.state)
     history.push('/tasks');
   }
 
-  saveClient = state => {
-    return fetch('http://localhost:3000/api/v1/users/1/clients/', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          name: state.name,
-          email: state.email,
-        })
-      })
-   }
+  // saveClient = state => {
+    
+
+  //   return fetch('http://localhost:3000/api/v1/users/1/clients/', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         name: state.name,
+  //         email: state.email,
+  //       })
+  //     })
+  //  }
   
 
   handleOnChange = event => {
