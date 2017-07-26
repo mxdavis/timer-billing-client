@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
+
 import { addClient } from '../../redux/actions/clients/addClient'
 import apiRequest from '../../redux/modules/apiRequests'
 
