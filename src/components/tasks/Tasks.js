@@ -24,10 +24,11 @@ class Tasks extends Component {
 
 const mapStateToProps = state => {
   return { 
-    unbilled_tasks: state.unbilled_tasks,
-    billed_tasks: state.billed_tasks
+    updateTasks: state.updateTasks
   }
 }
+
+debugger
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
