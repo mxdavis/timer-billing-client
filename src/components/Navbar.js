@@ -10,10 +10,10 @@ class Navbar extends Component {
         <nav className="uk-navbar">
           <div className="uk-navbar-flip">
             <ul className="uk-navbar-nav">
-              <li><NavLink to="/clients/new">Add Client</NavLink></li>
               <li><NavLink to="/">Home</NavLink></li>
               <li><NavLink to="/signin">Sign In</NavLink></li>
               <li><NavLink to="/">Add Task</NavLink></li>
+              <li><NavLink to="/clients/new">Add Client</NavLink></li>
             </ul>
           </div>
         </nav>  
