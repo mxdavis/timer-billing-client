@@ -2,16 +2,24 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { updateTasks } from '../../redux/actions/tasks/updateTasks'
+import { tasks } from '../../redux/actions/tasks/tasks'
 import apiRequest from '../../redux/modules/apiRequests'
 
 require('isomorphic-fetch');
 
 class Tasks extends Component {
 
+  constructor(props){
+    super(props)
+    this.state = {
+      unbilled_tasks: [], 
+      billed_tasks: []
+    }
+  }
+
   componentDidMount() {
     apiRequest.get('unbilled_tasks')
-    .then(tasks => updateTasks(tasks, 'unbilled'))
+    .then(tasks => this.props.tasks(tasks, 'unbilled'))
     .then(tasks => console.log(tasks))
   }
  
@@ -24,17 +32,14 @@ class Tasks extends Component {
 
 const mapStateToProps = state => {
   return { 
-    updateTasks: state.updateTasks
+    billed_tasks: state.billed_tasks,
+    unbilled_tasks: state.unbilled_tasks
   }
 }
 
-debugger
-
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { 
-    updateTasks
-    }, dispatch);
+    { tasks }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tasks);

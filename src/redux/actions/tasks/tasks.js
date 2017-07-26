@@ -1,4 +1,4 @@
-export function updateTasks(tasks, billed_status){
+export function tasks(tasks, billed_status){
   if (billed_status === 'unbilled'){
     debugger
     return {
