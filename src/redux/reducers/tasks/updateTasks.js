@@ -5,11 +5,9 @@ export default function updateTasks(state = {
   switch (action.type) {
     case 'UPDATE_UNBILLED_TASKS':
     debugger
-      state.unbilled_tasks = Object.assign({}, state.unbilled_tasks)
-      break
+      return state.unbilled_tasks = Object.assign({}, state.unbilled_tasks)
     case 'UPDATE_BILLED_TASKS':
-      Object.assign({}, state.billed_tasks)
-      break
+      return Object.assign({}, state.billed_tasks)
     default:
       return state;
   }
