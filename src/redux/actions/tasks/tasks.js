@@ -1,4 +1,4 @@
-export function tasks(tasks, billed_status){
+export function updateTasks(tasks, billed_status){
   if (billed_status === 'unbilled'){
     return {
       type: 'UPDATE_UNBILLED_TASKS',
