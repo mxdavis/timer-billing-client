@@ -4,20 +4,38 @@ import { bindActionCreators } from 'redux';
 
 import { tasks } from '../../redux/actions/tasks/tasks'
 import apiRequest from '../../redux/modules/apiRequests'
+import Task from './Task'
 
 require('isomorphic-fetch');
 
 class Tasks extends Component {
 
-  componentDidMount() {
-    apiRequest.get('unbilled_tasks')
-    .then(tasks => this.props.tasks(tasks, 'unbilled'))
-    .then(tasks => console.log(tasks))
+  getTasks = (tasks_type) => {
+    apiRequest.get(`${tasks_type}_tasks`)
+      .then(tasks => this.props.tasks(tasks, tasks_type))
+      .then(tasks => this.showTasks(tasks))
   }
+    
+  showTasks = (tasks) => {
+    tasks.map(task => <Task props={task} />)
+  }
+
+  componentDidMount() {
+    this.getTasks('unbilled')
+    this.getTasks('billed')
+  }
+
  
   render() {
     return (
-      <div>Here are my tasks</div>
+      <div>
+        <h1 class="uk-heading-primary">Welcome User</h1>
+        <h1 class="uk-heading-line uk-text-center"><span>Here are your tasks waiting to be billed:</span></h1>
+        
+        {/*{this.showTasks(this.state.tasks.unbilled_tasks)}*/}
+        <h1 class="uk-heading-line uk-text-center"><span>Here are your tasks that were already billed:</span></h1>
+        {/*{this.showTasks(this.state.tasks.billed_tasks)}*/}
+      </div>
     )
   }
 }
@@ -25,8 +43,10 @@ class Tasks extends Component {
 // will i need this to pass into task container?
 // const mapStateToProps = state => {
 //   return { 
-//     billed_tasks: state.billed_tasks,
-//     unbilled_tasks: state.unbilled_tasks
+//     tasks: {
+//       billed_tasks: state.billed_tasks,
+//       unbilled_tasks: state.unbilled_tasks
+//     }
 //   }
 // }
 
