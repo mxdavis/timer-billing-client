@@ -5,6 +5,7 @@ export default function updateClient(state = {
   switch (action.type) {
     case 'ADD_CLIENT':
       Object.assign({}, state.clients)
+      break
     default:
       return state;
   }
