@@ -22,16 +22,17 @@ class Tasks extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { 
-    billed_tasks: state.billed_tasks,
-    unbilled_tasks: state.unbilled_tasks
-  }
-}
+// will i need this to pass into task container?
+// const mapStateToProps = state => {
+//   return { 
+//     billed_tasks: state.billed_tasks,
+//     unbilled_tasks: state.unbilled_tasks
+//   }
+// }
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
     { tasks }, dispatch);
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tasks);
+export default connect(null, mapDispatchToProps)(Tasks);
