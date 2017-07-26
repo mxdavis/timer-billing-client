@@ -1,6 +1,5 @@
 export function tasks(tasks, billed_status){
   if (billed_status === 'unbilled'){
-    debugger
     return {
       type: 'UPDATE_UNBILLED_TASKS',
       tasks
