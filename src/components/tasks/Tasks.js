@@ -9,14 +9,6 @@ require('isomorphic-fetch');
 
 class Tasks extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      unbilled_tasks: [], 
-      billed_tasks: []
-    }
-  }
-
   componentDidMount() {
     apiRequest.get('unbilled_tasks')
     .then(tasks => this.props.tasks(tasks, 'unbilled'))
