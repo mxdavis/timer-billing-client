@@ -5,12 +5,12 @@ export default function tasks(state = {
   switch (action.type) {
     case 'UPDATE_UNBILLED_TASKS':
       const unbilled_tasks = action.tasks.filter(t => t != null)
-      return Object.assign({}, state.tasks, {
+      return Object.assign({}, state, {
         unbilled_tasks: unbilled_tasks
       });
      case 'UPDATE_BILLED_TASKS':
       const billed_tasks = action.tasks.filter(t => t != null)
-      return Object.assign({}, state.tasks, {
+      return Object.assign({}, state, {
         billed_tasks: billed_tasks
       });
     default:
