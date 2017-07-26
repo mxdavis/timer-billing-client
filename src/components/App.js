@@ -11,6 +11,7 @@ import Tasks from './tasks/Tasks'
 import AddTask from './tasks/AddTask'
 import AddClient from './clients/AddClient'
 import AddProject from './projects/AddProject'
+import Home from './Home'
 
 class App extends Component {
   render() {
@@ -28,7 +29,7 @@ class App extends Component {
             </div>
           </nav>  
           <Switch>
-            <Route exact path = "/" />
+            <Route exact path = "/" component={Home}/>
             <Route path = "/tasks/new" component={AddTask}/>
             <Route path = "/tasks" component={Tasks}/>
             <Route path = "/projects/new" component={AddProject}/>
