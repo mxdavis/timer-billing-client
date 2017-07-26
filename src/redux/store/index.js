@@ -6,10 +6,10 @@ import addClient from '../reducers/clients/addClient'
 import clients from '../reducers/clients/clients'
 import addProject from '../reducers/projects/addProject'
 import addTask from '../reducers/tasks/addTask'
-import tasks from '../reducers/tasks/tasks'
+import updateTasks from '../reducers/tasks/updateTasks'
 
 const reducers = combineReducers({
-  form, tasks, addClient, addTask, clients, addProject
+  form, updateTasks, addClient, addTask, clients, addProject
 })
 
 const middleware = [thunk]

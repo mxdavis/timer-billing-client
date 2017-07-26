@@ -2,23 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
-import { updateTasks } from '../../redux/actions/tasks/tasks'
+import { updateTasks } from '../../redux/actions/tasks/updateTasks'
 import apiRequest from '../../redux/modules/apiRequests'
 
 require('isomorphic-fetch');
 
 class Tasks extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
-      unbilled_tasks: [],
-      billed_tasks: []
-    }
-  }
   componentDidMount() {
     apiRequest.get('unbilled_tasks')
     .then(tasks => updateTasks(tasks, 'unbilled'))
+    .then(tasks => console.log(tasks))
   }
  
   render() {

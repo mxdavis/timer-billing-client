@@ -3,8 +3,7 @@ export default function addClient(state = {
 }, action) {
   switch (action.type) {
     case 'ADD_CLIENT':
-      Object.assign({}, state.client)
-      break
+    return Object.assign({}, state.client)
     default:
       return state;
   }
