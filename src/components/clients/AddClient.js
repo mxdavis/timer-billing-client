@@ -22,23 +22,6 @@ class AddClient extends Component {
     history.push('/tasks');
   }
 
-  // saveClient = state => {
-    
-
-  //   return fetch('http://localhost:3000/api/v1/users/1/clients/', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Accept': 'application/json',
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({
-  //         name: state.name,
-  //         email: state.email,
-  //       })
-  //     })
-  //  }
-  
-
   handleOnChange = event => {
     this.setState({
       [event.target.name]: event.target.value
