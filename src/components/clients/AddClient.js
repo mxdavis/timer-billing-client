@@ -17,7 +17,7 @@ class AddClient extends Component {
   
   handleOnSubmit = event => {
     event.preventDefault();
-    const { addClient, history } = this.props
+    const { history } = this.props
     addClient(this.state);
     apiRequest.post('clients/', this.state)
     history.push('/tasks');
