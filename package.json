@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "proxy": "http://localhost:3000/",
+  "homepage": "http://localhost:3000/",
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "react": "^15.6.1",
