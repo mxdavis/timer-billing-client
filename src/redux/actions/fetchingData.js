@@ -1,5 +1,4 @@
 export const stopFetchingData = (dataType) => {
-  debugger
   return { type: `STOP_FETCHING_${dataType}` }
 }
 
