@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux';
 
-import { addClient } from '../../redux/actions/clients/addClient'
 import apiRequest from '../../redux/modules/apiRequests'
 
-class AddClient extends Component {
+export default class AddClient extends Component {
 
   constructor(props){
     super(props)
@@ -17,10 +14,8 @@ class AddClient extends Component {
   
   handleOnSubmit = event => {
     event.preventDefault();
-    const { history } = this.props
-    addClient(this.state);
     apiRequest.post('clients/', this.state)
-    history.push('/tasks');
+    this.props.history.push('/tasks');
   }
 
   handleOnChange = event => {
@@ -60,18 +55,3 @@ class AddClient extends Component {
     );
   }
 };
-
-const mapStateToProps = state => {
-  return { 
-    clients: state.clients
-  }
-}
-
-const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    { 
-    addClient
-    }, dispatch);
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddClient);
