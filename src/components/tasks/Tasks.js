@@ -11,6 +11,7 @@ require('isomorphic-fetch');
 class Tasks extends Component {
   
   showTasks = (taskType) => {
+    debugger
     if (this.props.tasks[taskType]){
       return <div> I have loaded</div>
     }
