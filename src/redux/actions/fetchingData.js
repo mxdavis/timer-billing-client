@@ -3,5 +3,5 @@ export const stopFetchingData = (dataType) => {
 }
 
 export const startFetchingData = () => {
-  return { type: `START_FETCHING_DATA${dataType}` }
+  return { type: `START_FETCHING_${dataType}` }
 }
