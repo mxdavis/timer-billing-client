@@ -12,7 +12,7 @@ class Tasks extends Component {
   
   showTasks = (taskType) => {
     return this.props[`${taskType}Tasks`] !== [] ? 
-           this.props[`${taskType}Tasks`].map(task => <div key={task.id}>{task.description}</div>) :
+           this.props[`${taskType}Tasks`].map(task => <Task task={task}/>) :
            <div className="uk-spinner"> Please wait while I load the tasks </div>
   }
 
