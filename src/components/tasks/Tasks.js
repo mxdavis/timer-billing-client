@@ -12,7 +12,28 @@ class Tasks extends Component {
   
   showTasks = (taskType) => {
     return this.props[`${taskType}Tasks`] !== [] ? 
-           this.props[`${taskType}Tasks`].map(task => <Task task={task}/>) :
+           <div class="uk-overflow-auto">
+             <table class="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped">
+               <thead>
+                 <tr>
+                  <th class="uk-table-shrink"></th>
+                  <th class="uk-table-shrink">Client</th>
+                  <th class="uk-table-shrink">Project</th>
+                  <th class="uk-table-expand">Description</th>
+                  <th class="uk-width-shrink">Bill Rate</th>
+                  <th class="uk-table-shrink">Bill Time</th>
+                  <th class="uk-table-shrink">Total Amount</th>
+                  <th class="uk-table-shrink">Date</th>
+                </tr>
+              </thead>
+            <tbody>
+              {this.props[`${taskType}Tasks`].map(task => <Task task={task}/>)}
+            </tbody>
+          </table>
+        </div>
+            
+            
+            :
            <div className="uk-spinner"> Please wait while I load the tasks </div>
   }
 
