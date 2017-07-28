@@ -11,14 +11,9 @@ require('isomorphic-fetch');
 class Tasks extends Component {
   
   showTasks = (taskType) => {
-    debugger
-    if (this.props.tasks[taskType]){
-      return <div> I have loaded</div>
-    }
-   
-      
-    // return state ? <div>I have state</div> : <div> state is undefined</div>
-    // this.state[tasks].map(task => <Task props={task} />) 
+    return this.props[`${taskType}Tasks`] !== [] ? 
+           this.props[`${taskType}Tasks`].map(task => <div key={task.id}>{task.description}</div>) :
+           <div className="uk-spinner"> Please wait while I load the tasks </div>
   }
 
   componentDidMount() {
@@ -32,9 +27,9 @@ class Tasks extends Component {
       <div>
         <h1 className="uk-heading-primary">Welcome User</h1>
         <h1 className="uk-heading-line uk-text-center"><span>Here are your tasks waiting to be billed:</span></h1>
-        {(this.props.fetchingData.length > 0 && this.props.fetchingData.indexOf("billed") > -1) ? <div className="uk-spinner">I am loading</div> : this.showTasks("unbilled")}
+        {this.showTasks("unbilled")}
         <h1 className="uk-heading-line uk-text-center"><span>Here are your tasks that were already billed:</span></h1>
-        {(this.props.fetchingData.length > 0 && this.props.fetchingData.indexOf("billed") > -1) ? <div className="uk-spinner">I am loading</div> : this.showTasks("billed")}
+        {this.showTasks("billed")}
       </div>
     )
   }
@@ -42,7 +37,8 @@ class Tasks extends Component {
 
 const mapStateToProps = state => {
   return { 
-    tasks: state.tasks,
+    billedTasks: state.tasks.billed_tasks,
+    unbilledTasks: state.tasks.unbilled_tasks,
     fetchingData: state.fetchingData
 
   }
