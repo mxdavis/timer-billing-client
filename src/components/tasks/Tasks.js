@@ -32,10 +32,8 @@ class Tasks extends Component {
             </tbody>
           </table>
         </div>
-            
-            
             :
-           <div className="uk-spinner"> Please wait while I load the tasks </div>
+           <div className="uk-spinner"> You have no tasks yet. Create one? </div>
   }
 
   componentDidMount() {
