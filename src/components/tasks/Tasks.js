@@ -12,18 +12,19 @@ class Tasks extends Component {
   
   showTasks = (taskType) => {
     return this.props[`${taskType}Tasks`] !== [] ? 
-           <div class="uk-overflow-auto">
-             <table class="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped">
+           <div className="uk-overflow-auto">
+             <table className="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped uk-table-responsive">
                <thead>
                  <tr>
-                  <th class="uk-table-shrink"></th>
-                  <th class="uk-table-shrink">Client</th>
-                  <th class="uk-table-shrink">Project</th>
-                  <th class="uk-table-expand">Description</th>
-                  <th class="uk-width-shrink">Bill Rate</th>
-                  <th class="uk-table-shrink">Bill Time</th>
-                  <th class="uk-table-shrink">Total Amount</th>
-                  <th class="uk-table-shrink">Date</th>
+                   {/*ToDO have these check boxes for unbilled to bill tasks*/}
+                  {/*<th className="uk-table-shrink"></th>*/}
+                  <th className="uk-table-expand">Client</th>
+                  <th className="uk-table-expand">Project</th>
+                  <th className="uk-table-expand">Description</th>
+                  <th className="uk-width-small">Bill Rate</th>
+                  <th className="uk-width-small">Bill Time</th>
+                  <th className="uk-width-small">Total Amount</th>
+                  <th className="uk-width-small">Date</th>
                 </tr>
               </thead>
             <tbody>
@@ -46,10 +47,9 @@ class Tasks extends Component {
   render() {
     return (
       <div>
-        <h1 className="uk-heading-primary">Welcome User</h1>
-        <h1 className="uk-heading-line uk-text-center"><span>Here are your tasks waiting to be billed:</span></h1>
+        <h1 className="uk-heading-line uk-text-center padding-top"><span>Unbilled Tasks:</span></h1>
         {this.showTasks("unbilled")}
-        <h1 className="uk-heading-line uk-text-center"><span>Here are your tasks that were already billed:</span></h1>
+        <h1 className="uk-heading-line uk-text-center"><span>Billed Tasks</span></h1>
         {this.showTasks("billed")}
       </div>
     )
