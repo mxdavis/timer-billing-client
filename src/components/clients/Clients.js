@@ -12,8 +12,8 @@ class Clients extends Component {
     this.props.fetchClients()
   }
 
-  showClient() {
-    debugger
+  showClient = () => {
+    this.props.clientArray.map(client => <Client client={client}/>)
   }
 
  
