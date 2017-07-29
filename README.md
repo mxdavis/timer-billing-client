@@ -13,3 +13,13 @@ This app is deployed to heroku:
 https://bill-timer-client.herokuapp.com/
 
 I hope you find it useful.
+
+Version 1 includes:
+
+- Adding projects
+- Adding clients
+- Adding tasks
+- Deleting unbilled tasks
+- Editing unbilled tasks
+- Marking a task as billed
+- Viewing all tasks
