@@ -9,13 +9,6 @@ import 'react-datepicker/dist/react-datepicker.css';
 import {fetchClients } from '../../redux/actions/clients/clients'
 import apiRequest from '../../redux/modules/apiRequests'
 
-Object.prototype.isEmpty = function() {
-    for(var key in this) {
-        if(this.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
 
 class AddTask extends Component {
 
@@ -33,6 +26,13 @@ class AddTask extends Component {
     }
   }
 
+  isEmpty = (array) => {
+    for(var key in array) {
+        if(array.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+  }
 
 	handleOnChange = event => {
     this.setState({
@@ -53,7 +53,7 @@ class AddTask extends Component {
   }
   
   convertClientstoDropdown = () => {
-    if (!this.props.clientArray.isEmpty() && this.state.clientData.isEmpty()){
+    if (!this.isEmpty(this.props.clientArray) && this.isEmpty(this.state.clientData)){
       const clientData =  this.props.clientArray.clients.map(client => {
         var rObj = {};
         rObj["value"] = client.id;
@@ -111,7 +111,7 @@ class AddTask extends Component {
 	}
 
 	clientForm = () => {
-		return this.state.clientData.isEmpty() ?
+		return this.isEmpty(this.state.clientData) ?
 			<h1>Wait for form to load</h1> :
 
 			<Select
