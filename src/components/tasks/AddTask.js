@@ -43,7 +43,7 @@ class AddTask extends Component {
 
 	convertProjectstoDropdown = (clientId) => {
     const projectOfClient = this.props.clientArray.clients.filter(c => c.id === clientId)
-		const projectData =  projectOfClient.map(project => {
+		const projectData =  projectOfClient[0].projects.map(project => {
 			var rObj = {};
 			rObj["value"] = project.id;
 			rObj["label"] = project.name
@@ -71,16 +71,12 @@ class AddTask extends Component {
   }
   
 	projectForm() {
-			  // return this.state.clientData.isEmpty() ?
-				// <h1>Wait for form to load</h1> :
-
-			return 	<Select
-					name={this.state.projectValue.label}
-					value={this.state.projectValue.value}
-					options={this.state.projectData}
-					onChange={this.logpPojectChange}
-				/> 
-				
+		return 	<Select
+			name={this.state.projectValue.label}
+			value={this.state.projectValue.value}
+			options={this.state.projectData}
+			onChange={this.logpPojectChange}
+		/> 	
 	}
 
 		clientForm() {
