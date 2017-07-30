@@ -21,10 +21,7 @@ class AddTask extends Component {
       clientData: [],
       clientArray: [],
 			projectData: [],
-			clientValue: {
-				label: "Please select a client",
-				value: ''
-			},
+			clientValue: {},
 			projectValue: {}
     }
   }
