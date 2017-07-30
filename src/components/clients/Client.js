@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Project from '../projects/Project'
+import AddProject from '../projects/AddProject'
 
 const currentProjects = (projects) => {
   return projects.length > 0 ?
@@ -22,8 +23,9 @@ const currentProjects = (projects) => {
 
 const Client = ({ client: { id, name, email, projects}}) => 
   <div key={id} className="uk-width-5-10 uk-container-center">
-      <h2 className="uk-heading-line uk-text-center"><span>{name} <h3>{email}</h3></span></h2>
+      <h2 className="uk-heading-line uk-text-center padding-top"><span>{name} <h3>{email}</h3></span></h2>
       {currentProjects(projects)}
+      <AddProject clientId={id}/>
   </div> 
 
 export default Client
