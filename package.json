@@ -6,6 +6,7 @@
   "homepage": "http://localhost:3000/",
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
+    "moment": "^2.18.1",
     "react": "^15.6.1",
     "react-bootstrap-date-picker": "^5.0.1",
     "react-datepicker": "^0.52.0",
