@@ -76,13 +76,21 @@ class AddTask extends Component {
   }
 
 	logClientChange = (value) => {
-		const clientId = value.value
-		this.setState({clientValue: value})
-		this.convertProjectstoDropdown(clientId)
+		if (value === null){
+			this.setState({clientValue: {}, projectValue: {}})
+		} else {
+			const clientId = value.value
+			this.setState({clientValue: value})
+			this.convertProjectstoDropdown(clientId)
+		}
   }
 
 	logProjectChange = (value) => {
-		this.setState({projectValue: value})
+		if (value === null){
+			this.setState({projectValue: {}})
+		} else {
+		  this.setState({projectValue: value})
+		}
   }
   
 	projectForm() {
