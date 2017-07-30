@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 
 import apiRequest from '../../redux/modules/apiRequests'
 
-export default class AddClient extends Component {
+export default class AddProject extends Component {
 
   constructor(props){
     super(props)
