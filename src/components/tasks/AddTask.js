@@ -25,17 +25,8 @@ class AddTask extends Component {
   }
   
   convertClientstoDropdown() {
-    // if (!this.state.clients){
-    //     fetchClients
-    //     //what happens if no one has any clients yet
-    //     // if (!this.state.clients && !this.state.fetchingData.includes("CLIENTS")){
-    //     //   //redirect to add client page
-    //     //   return "you need to add clients"
-    //     // }
-    //   }
-    debugger
     if (!this.props.clientArray.isEmpty() && this.state.clientData.isEmpty()){
-    const clientData =  this.props.clientArray.clients.map(client => {
+      const clientData =  this.props.clientArray.clients.map(client => {
         var rObj = {};
         rObj["value"] = client.id;
         rObj["label"] = client.name
