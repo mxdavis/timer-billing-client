@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { clients, fetchClients } from '../../redux/actions/clients/clients'
 import {startFetchingData, stopFetchingData} from '../../redux/actions/fetchingData'
 import Client from './Client'
+import AddClient from './AddClient'
 
 class Clients extends Component {
 
@@ -28,6 +29,7 @@ class Clients extends Component {
       <div>
         <h1 className="uk-heading-line uk-text-center padding-top"><span>Clients:</span></h1>
         {this.showClient()}
+        <AddClient />
       </div>
     )
   }
