@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import Select, { Creatable } from 'react-select';
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 import { clients, fetchClients } from '../../redux/actions/clients/clients'
+
 
 Object.prototype.isEmpty = function() {
     for(var key in this) {
@@ -22,8 +26,15 @@ class AddTask extends Component {
       clientArray: [],
 			projectData: [],
 			clientValue: {},
-			projectValue: {}
+			projectValue: {},
+			startDate: moment()
     }
+  }
+
+	handleDateChange = date => {
+    this.setState({
+      startDate: date
+    });
   }
   
   convertClientstoDropdown() {
@@ -104,14 +115,18 @@ class AddTask extends Component {
 								<legend>Select Project</legend>
 								{this.projectForm()}
 							</div>
-              {/*<input type="text" placeholder="" disabled> if user didnt select client yet*/}
-              {/*<div className="uk-form-row">
-                <textarea cols="10" rows="10" placeholder="Description here">Description</textarea>
+              <div className="uk-form-row">
+								<legend>Description</legend>
+                <textarea placeholder="Description here">Description</textarea>
                 <p className="uk-form-help-block">...</p>
               </div>
 
-              <div className="uk-form-icon">
-                <i className="uk-icon-calendar"></i>
+              <div className="uk-form-row">
+								<legend>Select Date</legend>
+                <DatePicker
+									selected={this.state.startDate}
+									onChange={this.handleDateChange}
+								/>;
                 <input type="text" />
               </div>
               <label><input type="checkbox" /> ...</label>*/}
