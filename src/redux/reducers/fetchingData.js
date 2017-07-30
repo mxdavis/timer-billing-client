@@ -8,6 +8,10 @@ export default (state = [], action) => {
       return state.filter((i) => i !== "unbilled_tasks")
     case "START_FETCHING_UNBILLED_TASKS":
       return state.concat("unbilled_tasks")
+    case "START_FETCHING_CLIENTS":
+      return state.concat("clients")
+    case "STOP_FETCHING_CLIENTS":
+      return state.filter((i) => i !== "clients")
     default: 
       return state;
   }
