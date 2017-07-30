@@ -1,11 +1,10 @@
-export default function updateClient(state = {
-  name: '', 
-  email: ''
-}, action) {
+export default function updateClient(state = [], action) {
   switch (action.type) {
     case 'ADD_CLIENT':
-      Object.assign({}, state.clients)
-      break
+      return Object.assign({}, state.clients)
+    case 'UPDATE_CLIENTS':
+      const clients = action.clients.filter(c => c != null)
+      return Object.assign({}, state, {clients: clients})
     default:
       return state;
   }
