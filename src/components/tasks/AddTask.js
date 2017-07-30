@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
-import Select from 'react-select';
+import Select, { Creatable } from 'react-select';
 
 import { clients, fetchClients } from '../../redux/actions/clients/clients'
 
@@ -69,12 +69,12 @@ class AddTask extends Component {
   }
   
 	projectForm() {
-		return 	<Select
+		return 	<Creatable
 			name={this.state.projectValue.label}
 			value={this.state.projectValue.value}
 			options={this.state.projectData}
 			onChange={this.logProjectChange}
-		/> 	
+		/> 
 	}
 
 	clientForm() {
