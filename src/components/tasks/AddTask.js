@@ -75,7 +75,7 @@ class AddTask extends Component {
 			name={this.state.projectValue.label}
 			value={this.state.projectValue.value}
 			options={this.state.projectData}
-			onChange={this.logpPojectChange}
+			onChange={this.logProjectChange}
 		/> 	
 	}
 
