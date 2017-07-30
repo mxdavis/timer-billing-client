@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import Select from 'react-select';
 
-import selectForms from '../../redux/modules/selectForms'
 import { clients, fetchClients } from '../../redux/actions/clients/clients'
 
 Object.prototype.isEmpty = function() {
@@ -21,53 +20,14 @@ class AddTask extends Component {
     this.state = {
       clientData: [],
       clientArray: [],
-      client: '',
-      selectValue: ''
+			projectData: [],
+			clientValue: {
+				label: "Please select a client",
+				value: ''
+			},
+			projectValue: {}
     }
   }
-
-	getDefaultProps(){
-		return {
-			label: 'Clients:',
-			searchable: true,
-		};
-	}
-
-	getInitialState() {
-		return {
-			disabled: false,
-			searchable: this.props.searchable,
-			selectValue: 'select client',
-			clearable: true,
-		};
-	}
-
-	switchClient(e) {
-		var newClient = e.target.value;
-		console.log('Client changed to ' + newClient);
-		this.setState({
-			client: newClient,
-			selectValue: null
-		});
-	}
-
-	updateValue (newValue) {
-		console.log('Client changed to ' + newValue);
-    debugger
-		this.setState({
-			selectValue: newValue
-		});
-	}
-
-	focusClientSelect () {
-		this.refs.clientSelect.focus();
-	}
-
-	toggleCheckbox (e) {
-		let newState = {};
-		newState[e.target.name] = e.target.checked;
-		this.setState(newState);
-	}
   
   convertClientstoDropdown() {
     if (!this.props.clientArray.isEmpty() && this.state.clientData.isEmpty()){
@@ -77,9 +37,20 @@ class AddTask extends Component {
         rObj["label"] = client.name
         return rObj;
       })   
-    this.setState({clientData: clientData})
-    }
+    this.setState({clientData})
+	  }
   }
+
+	convertProjectstoDropdown = (clientId) => {
+    const projectOfClient = this.props.clientArray.clients.filter(c => c.id === clientId)
+		const projectData =  projectOfClient.map(project => {
+			var rObj = {};
+			rObj["value"] = project.id;
+			rObj["label"] = project.name
+			return rObj;
+		})   
+	this.setState({projectData})
+	}
 
   componentDidMount() {
     this.props.fetchClients()
@@ -88,59 +59,64 @@ class AddTask extends Component {
   componentDidUpdate(){
     this.convertClientstoDropdown()
   }
+
+	logClientChange = (value) => {
+		const clientId = value.value
+		this.setState({clientValue: value})
+		this.convertProjectstoDropdown(clientId)
+  }
+
+	logProjectChange = (value) => {
+		this.setState({projectValue: value})
+  }
+  
+	projectForm() {
+		debugger
+			  // return this.state.clientData.isEmpty() ?
+				// <h1>Wait for form to load</h1> :
+
+			return 	<Select
+					name={this.state.projectValue.label}
+					value={this.state.projectValue.value}
+					options={this.state.projectData}
+					onChange={this.logpPojectChange}
+				/> 
+				
+	}
+
+		clientForm() {
+			  return this.state.clientData.isEmpty() ?
+				<h1>Wait for form to load</h1> :
+
+				<Select
+					name={this.state.clientValue.label}
+					value={this.state.clientValue.value}
+					options={this.state.clientData}
+					onChange={this.logClientChange}
+				/> 
+				
+	}
  
   render() {
      var options = this.state.clientData;
     return (
       <div>
-
-			<div className="section">
-				<h3 className="section-heading">{this.props.label}</h3>
-				<Select ref="clientSelect" autofocus options={options} simpleValue clearable={this.state.clearable} name="selected-client" disabled={this.state.disabled} value={this.state.selectValue} onChange={this.updateValue} searchable={this.state.searchable} />
-
-				<div style={{ marginTop: 14 }}>
-					<button type="button" onClick={this.focusClientSelect}>Focus Select</button>
-					<label className="checkbox" style={{ marginLeft: 10 }}>
-						<input type="checkbox" className="checkbox-control" name="searchable" checked={this.state.searchable} onChange={this.toggleCheckbox}/>
-						<span className="checkbox-label">Searchable</span>
-					</label>
-					<label className="checkbox" style={{ marginLeft: 10 }}>
-						<input type="checkbox" className="checkbox-control" name="disabled" checked={this.state.disabled} onChange={this.toggleCheckbox}/>
-						<span className="checkbox-label">Disabled</span>
-					</label>
-					<label className="checkbox" style={{ marginLeft: 10 }}>
-						<input type="checkbox" className="checkbox-control" name="clearable" checked={this.state.clearable} onChange={this.toggleCheckbox}/>
-						<span className="checkbox-label">Clearable</span>
-					</label>
-				</div>
-				{/*<div className="checkbox-list">
-					<label className="checkbox">
-						<input type="radio" className="checkbox-control" checked={this.state.country === 'AU'} value="AU" onChange={this.switchCountry}/>
-						<span className="checkbox-label">Australia</span>
-					</label>
-					<label className="checkbox">
-						<input type="radio" className="checkbox-control" checked={this.state.country === 'US'} value="US" onChange={this.switchCountry}/>
-						<span className="checkbox-label">United States</span>
-					</label>
-				</div>*/}
-			</div>
-
-
-
-        HELLO
-        <form class="uk-form">
+        <form className="uk-form">
           <fieldset>
               <legend>Add Task</legend>
-              <div class="uk-form-row"></div>
-              <div class="uk-form-row">HELLLOO!</div>
+              <div className="uk-form-row">
+								<legend>Select Client</legend>
+								{this.clientForm()}
+							</div>
+              <div className="uk-form-row">{this.projectForm()}</div>
               {/*<input type="text" placeholder="" disabled> if user didnt select client yet*/}
-              <div class="uk-form-row">
+              <div className="uk-form-row">
                 <textarea cols="10" rows="10" placeholder="Description here">Description</textarea>
-                <p class="uk-form-help-block">...</p>
+                <p className="uk-form-help-block">...</p>
               </div>
 
-              <div class="uk-form-icon">
-                <i class="uk-icon-calendar"></i>
+              <div className="uk-form-icon">
+                <i className="uk-icon-calendar"></i>
                 <input type="text" />
               </div>
               <label><input type="checkbox" /> ...</label>
