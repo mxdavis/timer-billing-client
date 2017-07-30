@@ -77,7 +77,7 @@ class AddTask extends Component {
 
 	logClientChange = (value) => {
 		if (value === null){
-			this.setState({clientValue: {}, projectValue: {}})
+			this.setState({clientValue: {}, projectValue: {}, projectData: []})
 		} else {
 			const clientId = value.value
 			this.setState({clientValue: value})
