@@ -71,7 +71,6 @@ class AddTask extends Component {
   }
   
 	projectForm() {
-		debugger
 			  // return this.state.clientData.isEmpty() ?
 				// <h1>Wait for form to load</h1> :
 
@@ -108,9 +107,12 @@ class AddTask extends Component {
 								<legend>Select Client</legend>
 								{this.clientForm()}
 							</div>
-              <div className="uk-form-row">{this.projectForm()}</div>
-              {/*<input type="text" placeholder="" disabled> if user didnt select client yet*/}
               <div className="uk-form-row">
+								<legend>Select Project</legend>
+								{this.projectForm()}
+							</div>
+              {/*<input type="text" placeholder="" disabled> if user didnt select client yet*/}
+              {/*<div className="uk-form-row">
                 <textarea cols="10" rows="10" placeholder="Description here">Description</textarea>
                 <p className="uk-form-help-block">...</p>
               </div>
@@ -119,7 +121,7 @@ class AddTask extends Component {
                 <i className="uk-icon-calendar"></i>
                 <input type="text" />
               </div>
-              <label><input type="checkbox" /> ...</label>
+              <label><input type="checkbox" /> ...</label>*/}
           </fieldset>
         </form>
       </div>
