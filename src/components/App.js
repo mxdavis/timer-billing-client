@@ -19,7 +19,7 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <nav className="uk-navbar">
+          <nav className="uk-navbar fixed">
             <div className="uk-navbar-flip">
               <ul className="uk-navbar-nav">
                 <li><NavLink to="/">Home</NavLink></li>
