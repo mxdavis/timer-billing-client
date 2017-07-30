@@ -13,7 +13,13 @@ class Clients extends Component {
   }
 
   showClient = () => {
-    this.props.clientArray.map(client => <Client client={client}/>)
+    return this.props.clientArray.clients !== undefined && this.props.clientArray.clients !== [] ? 
+    <div>
+     {this.props.clientArray.clients.map(client => <Client client={client}/>)}
+    </div> : 
+    this.props.clientArray.clients === undefined? 
+    <h3> Please wait for your clients to load </h3> :
+    <h3> Seems you have no clients, please add some! </h3>
   }
 
  
@@ -21,7 +27,7 @@ class Clients extends Component {
     return (
       <div>
         <h1 className="uk-heading-line uk-text-center padding-top"><span>Clients:</span></h1>
-          {this.showClient()}
+        {this.showClient()}
       </div>
     )
   }
