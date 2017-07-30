@@ -9,11 +9,17 @@ import Task from './Task'
 require('isomorphic-fetch');
 
 class Tasks extends Component {
+
+  classNameForTasks = (taskType) => {
+    return taskType === "unbilled" ?
+      "uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped uk-table-responsive" :
+      "uk-table uk-table-middle uk-table-divider uk-table-striped uk-table-responsive"
+  }
   
   showTasks = (taskType) => {
     return this.props[`${taskType}Tasks`] !== [] ? 
            <div className="uk-overflow-auto">
-             <table className="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped uk-table-responsive">
+             <table className={this.classNameForTasks(taskType)}>
                <thead>
                  <tr>
                    {/*ToDO have these check boxes for unbilled to bill tasks*/}
