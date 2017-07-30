@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const AddProject = () => (
  <div>I am a stateless component</div>
