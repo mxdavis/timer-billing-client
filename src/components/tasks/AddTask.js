@@ -44,6 +44,7 @@ class AddTask extends Component {
 			var rObj = {};
 			rObj["value"] = project.id;
 			rObj["label"] = project.name
+			rObj["price"] = project.bill_rate
 			return rObj;
 		})   
 	this.setState({projectData})
@@ -76,17 +77,16 @@ class AddTask extends Component {
 		/> 	
 	}
 
-		clientForm() {
-			  return this.state.clientData.isEmpty() ?
-				<h1>Wait for form to load</h1> :
+	clientForm() {
+		return this.state.clientData.isEmpty() ?
+			<h1>Wait for form to load</h1> :
 
-				<Select
-					name={this.state.clientValue.label}
-					value={this.state.clientValue.value}
-					options={this.state.clientData}
-					onChange={this.logClientChange}
-				/> 
-				
+			<Select
+				name={this.state.clientValue.label}
+				value={this.state.clientValue.value}
+				options={this.state.clientData}
+				onChange={this.logClientChange}
+			/> 
 	}
  
   render() {
