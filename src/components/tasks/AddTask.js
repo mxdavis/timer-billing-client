@@ -27,8 +27,15 @@ class AddTask extends Component {
 			projectData: [],
 			clientValue: {},
 			projectValue: {},
-			startDate: moment()
+			startDate: moment(),
     }
+  }
+
+
+	handleOnChange = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   }
 
 	handleDateChange = date => {
@@ -55,7 +62,6 @@ class AddTask extends Component {
 			var rObj = {};
 			rObj["value"] = project.id;
 			rObj["label"] = project.name
-			rObj["price"] = project.bill_rate
 			return rObj;
 		})   
 	this.setState({projectData})
@@ -103,10 +109,10 @@ class AddTask extends Component {
   render() {
      var options = this.state.clientData;
     return (
-      <div>
+      <div className="uk-position-center">
         <form className="uk-form">
-          <fieldset>
-              <legend>Add Task</legend>
+          <fieldset className="color-light">
+              <legend className="uk-text-center"><h2>Add Task</h2></legend>
               <div className="uk-form-row">
 								<legend>Select Client</legend>
 								{this.clientForm()}
@@ -117,19 +123,32 @@ class AddTask extends Component {
 							</div>
               <div className="uk-form-row">
 								<legend>Description</legend>
-                <textarea placeholder="Description here">Description</textarea>
-                <p className="uk-form-help-block">...</p>
+                <textarea 
+								className="uk-width-2-2"
+								placeholder="Description here"
+								rows="10"
+								>Description</textarea>
               </div>
 
-              <div className="uk-form-row">
-								<legend>Select Date</legend>
-                <DatePicker
-									selected={this.state.startDate}
-									onChange={this.handleDateChange}
-								/>;
-                <input type="text" />
-              </div>
-              <label><input type="checkbox" /> ...</label>*/}
+              <div className="uk-grid uk-form-row">
+								<div className="uk-width-1-2">
+								  <legend>Select Date</legend>
+									<DatePicker
+										selected={this.state.startDate}
+										onChange={this.handleDateChange}
+									/>
+								</div>
+								<div className="uk-width-1-2">
+								  <legend>Billing Time</legend>
+										<input
+											type="text"
+											placeholder="Format in 01:30 or 1.5"
+											name="bill_time"
+											onChange={this.handleOnChange}
+										/> 
+								</div>
+							</div>
+
           </fieldset>
         </form>
       </div>

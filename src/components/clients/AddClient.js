@@ -15,7 +15,7 @@ export default class AddClient extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
     apiRequest.post('clients/', this.state)
-    this.props.history.push('/tasks');
+    this.props.router.push('/clients');
   }
 
   handleOnChange = event => {
