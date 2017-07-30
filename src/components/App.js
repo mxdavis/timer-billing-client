@@ -24,8 +24,9 @@ class App extends Component {
               <ul className="uk-navbar-nav">
                 <li><NavLink to="/">Home</NavLink></li>
                 <li><NavLink to="/signin">Sign In</NavLink></li>
-                <li><NavLink to="/">Add Task</NavLink></li>
+                <li><NavLink to="/tasks/new">Add Task</NavLink></li>
                 <li><NavLink to="/clients">Clients</NavLink></li>
+                <li><NavLink to="/tasks">Tasks</NavLink></li>
               </ul>
             </div>
           </nav>  
@@ -34,10 +35,9 @@ class App extends Component {
             <Route path = "/tasks/new" component={AddTask}/>
             <Route path = "/tasks" component={Tasks}/>
             <Route path = "/clients/" component={Clients}>
-              <Route path = "/clients/new" component={AddClient}/>
-              <Route path = "clients/projects/new" component={AddProject}/>
+            <Route path = "/clients/new" component={AddClient}/>
+            <Route path = "clients/projects/new" component={AddProject}/>
             </Route>
-            <Route  />
           </Switch>
         </div>
       </Router>
