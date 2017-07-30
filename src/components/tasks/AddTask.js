@@ -6,8 +6,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-import { clients, fetchClients } from '../../redux/actions/clients/clients'
-
+import {fetchClients } from '../../redux/actions/clients/clients'
+import apiRequest from '../../redux/modules/apiRequests'
 
 Object.prototype.isEmpty = function() {
     for(var key in this) {
@@ -28,6 +28,8 @@ class AddTask extends Component {
 			clientValue: {},
 			projectValue: {},
 			startDate: moment(),
+			bill_time: '',
+			description: ''
     }
   }
 
@@ -38,13 +40,19 @@ class AddTask extends Component {
     });
   }
 
+	handleOnSubmit = event => {
+    event.preventDefault();
+    apiRequest.post('tasks/', this.state)
+    this.props.router.push('/tasks');
+  }
+
 	handleDateChange = date => {
     this.setState({
       startDate: date
     });
   }
   
-  convertClientstoDropdown() {
+  convertClientstoDropdown = () => {
     if (!this.props.clientArray.isEmpty() && this.state.clientData.isEmpty()){
       const clientData =  this.props.clientArray.clients.map(client => {
         var rObj = {};
@@ -67,11 +75,11 @@ class AddTask extends Component {
 	this.setState({projectData})
 	}
 
-  componentDidMount() {
+  componentDidMount = ()=>{
     this.props.fetchClients()
   }
 
-  componentDidUpdate(){
+  componentDidUpdate = () => {
     this.convertClientstoDropdown()
   }
 
@@ -93,7 +101,7 @@ class AddTask extends Component {
 		}
   }
   
-	projectForm() {
+	projectForm = () => {
 		return 	<Creatable
 			name={this.state.projectValue.label}
 			value={this.state.projectValue.value}
@@ -102,7 +110,7 @@ class AddTask extends Component {
 		/> 
 	}
 
-	clientForm() {
+	clientForm = () => {
 		return this.state.clientData.isEmpty() ?
 			<h1>Wait for form to load</h1> :
 
@@ -115,10 +123,9 @@ class AddTask extends Component {
 	}
  
   render() {
-     var options = this.state.clientData;
     return (
       <div className="uk-position-center">
-        <form className="uk-form">
+        <form className="uk-form" onSubmit={this.handleOnSubmit}>
           <fieldset className="color-light">
               <legend className="uk-text-center"><h2>Add Task</h2></legend>
               <div className="uk-form-row">
@@ -135,7 +142,9 @@ class AddTask extends Component {
 								className="uk-width-2-2"
 								placeholder="Description here"
 								rows="10"
-								>Description</textarea>
+								name="description"
+								onChange={this.handleOnChange}
+								/>
               </div>
 
               <div className="uk-grid uk-form-row">
@@ -155,8 +164,12 @@ class AddTask extends Component {
 											onChange={this.handleOnChange}
 										/> 
 								</div>
+								<div className="uk-width-2-2 uk-text-center">
+									<input
+									type="submit"
+									value="Save Task" />
+								</div>
 							</div>
-
           </fieldset>
         </form>
       </div>
