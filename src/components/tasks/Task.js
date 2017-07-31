@@ -1,16 +1,71 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Modal from 'react-modal'
 
-const Task = ({ task: { client, project, bill_rate, bill_time, description, total, billed, date, task_id }}) => 
-      <tr key={task_id}>
+import AddTask from './AddTask'
+
+export default class Task extends Component {
+    constructor(props){
+    super(props)
+
+    this.state = { imodalIsOpen: false}
+ 
+  }
+
+  openModal = () => this.setState({modalIsOpen: true})
+  closeModal = () => this.setState({modalIsOpen: false})
+
+  clickMe() {
+    debugger
+    this.openModal()
+  }
+
+  render() {
+    const modalStyle = {
+        content: {
+        border: '0',
+        borderRadius: '4px',
+        bottom: 'auto',
+        height: '60%',  // set height
+        left: '50%',
+        padding: '2rem',
+        position: 'fixed',
+        right: 'auto',
+        top: '15%', // start from center
+        transform: 'translate(-50%,-' + '10px' + ')', // adjust top "up" based on height
+        width: '40%',
+        maxWidth: '40rem'
+      },
+      overlay: {
+        "position": "absolute",
+        "overflow": "auto",
+        "minHeight": "5%",
+      }
+    }
+    return (
+
+      <tr key={this.props.task.task_id} onClick={() => this.clickMe()}>
           {/*ToDO have these check boxes for unbilled to bill tasks*/}
           {/*<td><input className="uk-checkbox" type="checkbox" /></td>*/}
-          <td className="uk-text-truncate">{client}</td>
-          <td className="uk-text-truncate">{project}</td>
-          <td className="uk-text-truncate">{description}</td>
-          <td className="uk-text-truncate">${bill_rate}</td>
-          <td className="uk-text-truncate">{bill_time}</td>
-          <td className="uk-text-truncate">${total.toLocaleString( undefined,{ minimumFractionDigits: 2 })}</td>
-          <td className="uk-text-truncate">{date}</td>
+          <td className="uk-text-truncate">{this.props.task.client}</td>
+          <td className="uk-text-truncate">{this.props.task.project}</td>
+          <td className="uk-text-truncate">{this.props.task.description}</td>
+          <td className="uk-text-truncate">${this.props.task.bill_rate}</td>
+          <td className="uk-text-truncate">{this.props.task.bill_time}</td>
+          <td className="uk-text-truncate">${this.props.task.total.toLocaleString( undefined,{ minimumFractionDigits: 2 })}</td>
+          <td className="uk-text-truncate">{this.props.task.date}</td>
+        
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          contentLabel="Modal"
+          onRequestClose={this.closeModal}
+          style={modalStyle}>
+          <AddTask task={this.props.task}/>
+          <button type="button" className="uk-button uk-margin-top uk-margin-right uk-button-secondary uk-position-top-right" onClick={this.closeModal}>X</button>
+        </Modal>
       </tr>
 
-export default Task
+
+    )
+  }
+
+}
