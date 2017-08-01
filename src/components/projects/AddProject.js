@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import Select from 'react-select';
 
 import apiRequest from '../../redux/modules/apiRequests'
 
@@ -15,7 +14,6 @@ export default class AddProject extends Component {
   }
   
   handleOnSubmit = event => {
-    debugger
     event.preventDefault();
     apiRequest.post(`projects/`, this.state)
     this.props.router.push('/client');
