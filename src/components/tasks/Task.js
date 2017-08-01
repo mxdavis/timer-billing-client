@@ -15,7 +15,6 @@ export default class Task extends Component {
   closeModal = () => this.setState({modalIsOpen: false})
 
   clickMe() {
-    debugger
     this.openModal()
   }
 
