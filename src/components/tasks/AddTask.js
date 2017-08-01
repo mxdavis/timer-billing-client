@@ -17,12 +17,13 @@ class AddTask extends Component {
     this.state = {
       clientData: [],
       clientArray: [],
-			projectData: [],
+			// projectData: [],
 			clientValue: {},
 			projectValue: {},
 			startDate: moment(),
 			bill_time: '',
-			description: ''
+			description: '',
+			gotDefaultDropdown: false
     }
   }
 
@@ -53,7 +54,7 @@ class AddTask extends Component {
   }
   
   convertClientstoDropdown = () => {
-    if (!this.isEmpty(this.props.clientArray) && this.isEmpty(this.state.clientData)){
+    if (!this.isEmpty(this.props.clientArray) && this.isEmpty(this.state.projectData)){
       const clientData =  this.props.clientArray.clients.map(client => {
         var rObj = {};
         rObj["value"] = client.id;
@@ -80,7 +81,9 @@ class AddTask extends Component {
   }
 
   componentDidUpdate = () => {
-    this.convertClientstoDropdown()
+		if (this.isEmpty(this.state.clientData)){
+      this.convertClientstoDropdown()
+		}
   }
 
 	logClientChange = (value) => {
@@ -107,6 +110,7 @@ class AddTask extends Component {
 			value={this.state.projectValue.value}
 			options={this.state.projectData}
 			onChange={this.logProjectChange}
+			value={this.isEmpty(this.state.projectValue) && !this.isEmpty(this.props.task) ? {label: this.props.task.project, value: this.props.task.project_id} : this.state.projectValue}
 		/> 
 	}
 
@@ -119,6 +123,7 @@ class AddTask extends Component {
 				value={this.state.clientValue.value}
 				options={this.state.clientData}
 				onChange={this.logClientChange}
+				value={this.isEmpty(this.state.clientValue) && !this.isEmpty(this.props.task) ? {label: this.props.task.client, value: this.props.task.client_id} : this.state.clientValue}
 			/> 
 	}
  
@@ -144,6 +149,7 @@ class AddTask extends Component {
 								rows="10"
 								name="description"
 								onChange={this.handleOnChange}
+								defaultValue={!this.isEmpty(this.props.task) ? this.props.task.description : null}
 								/>
               </div>
 
@@ -151,7 +157,7 @@ class AddTask extends Component {
 								<div className="uk-width-1-2">
 								  <legend>Select Date</legend>
 									<DatePicker
-										selected={this.state.startDate}
+										selected={!this.isEmpty(this.props.task) ? moment(this.props.task.date, 'YYY-MM-DD') : moment() }
 										onChange={this.handleDateChange}
 									/>
 								</div>
@@ -162,12 +168,13 @@ class AddTask extends Component {
 											placeholder="Format in 01:30 or 1.5"
 											name="bill_time"
 											onChange={this.handleOnChange}
+											defaultValue={!this.isEmpty(this.props.task) ? this.props.task.bill_time : null}
 										/> 
 								</div>
 								<div className="uk-width-2-2 uk-text-center">
 									<input
 									type="submit"
-									value="Save Task" />
+									value={!this.isEmpty(this.props.task) ? "Update Task" : "Save Task"} />
 								</div>
 							</div>
           </fieldset>
