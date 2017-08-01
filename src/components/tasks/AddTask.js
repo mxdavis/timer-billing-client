@@ -17,7 +17,6 @@ class AddTask extends Component {
     this.state = {
       clientData: [],
       clientArray: [],
-			// projectData: [],
 			clientValue: {},
 			projectValue: {},
 			startDate: moment(),
