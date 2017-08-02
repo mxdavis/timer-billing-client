@@ -22,6 +22,17 @@ export default {
     },
     body: JSON.stringify(body)
   }).then(response => (response.json()))
-  }
+  },
+
+  delete(url, body) {
+    return fetch(API_URL + url, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body)
+    }).then(response => (response.json()))
+  },
 
 }
