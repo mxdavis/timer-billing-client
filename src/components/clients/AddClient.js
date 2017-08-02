@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux';
 
+import {addClient} from '../../redux/actions/clients/clients'
 import apiRequest from '../../redux/modules/apiRequests'
 
-export default class AddClient extends Component {
+class AddClient extends Component {
 
   constructor(props){
     super(props)
@@ -15,7 +18,8 @@ export default class AddClient extends Component {
   handleOnSubmit = event => {
     event.preventDefault();
     apiRequest.post('clients/', this.state)
-    this.props.router.push('/clients');
+    this.props.addClient(this.state)
+    this.setState({name: '', email: ''})
   }
 
   handleOnChange = event => {
@@ -36,7 +40,8 @@ export default class AddClient extends Component {
                 type="text"
                 placeholder="Client Name"
                 name="name"
-                onChange={this.handleOnChange} />
+                onChange={this.handleOnChange}
+                value={this.state.name} />
               </div>
               <div className="uk-form-row">
                 <legend>Client E-mail</legend>
@@ -44,7 +49,8 @@ export default class AddClient extends Component {
                 type="text"
                 placeholder="Client E-mail"
                 name="email"
-                onChange={this.handleOnChange} />
+                onChange={this.handleOnChange}
+                value={this.state.email} />
               </div>
               <input
             type="submit"
@@ -55,3 +61,10 @@ export default class AddClient extends Component {
     );
   }
 };
+
+const mapDispatchToProps = dispatch => {
+  return bindActionCreators(
+    { addClient }, dispatch);
+};
+
+export default connect(null, mapDispatchToProps)(AddClient);
