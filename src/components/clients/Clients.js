@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import { clients, fetchClients } from '../../redux/actions/clients/clients'
-import {startFetchingData, stopFetchingData} from '../../redux/actions/fetchingData'
 import Client from './Client'
 import AddClient from './AddClient'
 
@@ -45,7 +44,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { clients, startFetchingData, stopFetchingData, fetchClients }, dispatch);
+    { clients, fetchClients }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Clients);
