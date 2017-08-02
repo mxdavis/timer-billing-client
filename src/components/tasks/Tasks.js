@@ -42,7 +42,7 @@ class Tasks extends Component {
           </table>
         </div>
             :
-           <div className="uk-spinner"> You have no tasks yet. Create one? </div>
+           <div> You have no tasks yet. Create one? </div>
   }
 
   componentDidMount() {
