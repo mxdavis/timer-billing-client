@@ -81,13 +81,14 @@ class AddTask extends Component {
 	}
 
   componentDidMount = ()=>{
+
     this.props.fetchClients()
 		if (!this.isEmpty(this.props.task)){
 			this.setState({
 				task_id: this.props.task.task_id,
 				bill_time: this.props.task.bill_time,
 				description: this.props.task.description,
-				startDate: this.props.task.date,
+				startDate: moment(this.props.task.date, 'YYYY-MM-DD'),
 				clientValue: {value: this.props.task.client_id, label: this.props.task.client},
 				projectValue: {value: this.props.task.project_id, label: this.props.task.project},
 				bill_rate: this.props.task.bill_rate
@@ -173,7 +174,7 @@ class AddTask extends Component {
 								<div className="uk-width-1-2">
 								  <legend>Select Date</legend>
 									<DatePicker
-										selected={!this.isEmpty(this.props.task) ? moment(this.props.task.date, 'YYY-MM-DD') : moment() }
+										selected={this.state.startDate}
 										onChange={this.handleDateChange}
 									/>
 								</div>
