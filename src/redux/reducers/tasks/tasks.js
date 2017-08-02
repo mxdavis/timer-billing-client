@@ -13,6 +13,17 @@ export default function tasks(state = {
       return Object.assign({}, state, {
         billed_tasks: billed_tasks
       });
+     case 'ADD_UNBILLED_TASK':
+      const tasksWithoutChangedTask = state.unbilled_tasks.filter(t => t.task_id !== action.task.task_id)
+      const changedTask = Object.assign({}, action.task, {
+        client: action.task.clientValue.label,
+        client_id: action.task.clientValue.value,
+        project: action.task.projectValue.label,
+        project_id: action.task.projectValue.value,
+        total: action.task.bill_rate * action.task.bill_time,
+        date: action.task.startDate})
+      const allTasksWithChanged = [...tasksWithoutChangedTask, changedTask]
+      return Object.assign({}, state, {unbilled_tasks: allTasksWithChanged})
     default:
       return state;
   }

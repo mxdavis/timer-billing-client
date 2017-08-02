@@ -15,6 +15,13 @@ export function tasks(tasks, billed_status){
   }
 }
 
+export function addTask(task){
+  return {
+    type: 'ADD_UNBILLED_TASK',
+    task
+  }
+}
+
 export function fetchTasks(taskType) {
   return dispatch => {
     dispatch(startFetchingData(taskType.toUpperCase()));

@@ -9,6 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import {fetchClients } from '../../redux/actions/clients/clients'
 import apiRequest from '../../redux/modules/apiRequests'
+import {addTask} from '../../redux/actions/tasks/tasks'
 
 
 class AddTask extends Component {
@@ -45,7 +46,8 @@ class AddTask extends Component {
 	handleOnSubmit = event => {
     event.preventDefault();
     apiRequest.post('tasks/', this.state)
-		this.props.closeModal? this.props.closeModal() : null
+		this.props.addTask(this.state)
+		this.props.closeModal ? this.props.closeModal() : null
     this.setState({redirect:true})
   }
 
@@ -85,7 +87,10 @@ class AddTask extends Component {
 				task_id: this.props.task.task_id,
 				bill_time: this.props.task.bill_time,
 				description: this.props.task.description,
-				startDate: this.props.task.date
+				startDate: this.props.task.date,
+				clientValue: {value: this.props.task.client_id, label: this.props.task.client},
+				projectValue: {value: this.props.task.project_id, label: this.props.task.project},
+				bill_rate: this.props.task.bill_rate
 			})
 		}
   }
@@ -204,7 +209,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { fetchClients }, dispatch);
+    { fetchClients, addTask }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
