@@ -2,6 +2,10 @@
   padding-top: 2%;
 }
 
+.padding-bottom {
+  padding-bottom: 4%;
+}
+
 .fixed {
   z-index: 1000
 }
