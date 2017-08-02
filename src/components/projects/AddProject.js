@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
@@ -13,8 +12,7 @@ class AddProject extends Component {
     this.state = {
       name: '',
       bill_rate: '',
-      clientId: this.props.clientId,
-      // redirect: false
+      clientId: this.props.clientId
     }
   }
   
@@ -34,7 +32,7 @@ class AddProject extends Component {
   render() {
     return (
       <div>
-        {this.state.redirect ? <Redirect to="/clients"/> : null}
+        {/*{this.state.redirect ? <Redirect to="/clients"/> : null}*/}
         <form className="uk-form" onSubmit={this.handleOnSubmit}>
           <fieldset>
               <legend>Add Project</legend>
