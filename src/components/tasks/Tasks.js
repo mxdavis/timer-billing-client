@@ -8,11 +8,8 @@ import Task from './Task'
 
 require('isomorphic-fetch');
 
-class Tasks extends Component {
-    constructor(props){
-    super(props)
- 
-  }
+class Tasks extends Component { 
+  
   classNameForTasks = (taskType) => {
     return taskType === "unbilled" ?
       "uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped uk-table-responsive" :
