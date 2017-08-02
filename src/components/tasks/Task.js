@@ -24,12 +24,12 @@ export default class Task extends Component {
         border: '0',
         borderRadius: '4px',
         bottom: 'auto',
-        height: '60%',  // set height
+        height: '60%',
         left: '50%',
         padding: '2rem',
         position: 'fixed',
         right: 'auto',
-        top: '15%', // start from center
+        top: '15%', 
         transform: 'translate(-50%, -10px)',
         width: '40%',
         maxWidth: '40rem'
