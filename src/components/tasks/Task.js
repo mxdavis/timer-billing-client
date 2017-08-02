@@ -58,7 +58,7 @@ export default class Task extends Component {
           contentLabel="Modal"
           onRequestClose={this.closeModal}
           style={modalStyle}>
-          <AddTask task={this.props.task}/>
+          <AddTask task={this.props.task} closeModal={this.closeModal}/>
           <button type="button" className="uk-button uk-margin-top uk-margin-right uk-button-secondary uk-position-top-right" onClick={this.closeModal}>X</button>
         </Modal>
       </tr>
