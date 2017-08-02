@@ -22,6 +22,13 @@ export function addTask(task){
   }
 }
 
+export function removeTask(task){
+  return {
+    type: 'REMOVE_UNBILLED_TASK',
+    task
+  }
+}
+
 export function fetchTasks(taskType) {
   return dispatch => {
     dispatch(startFetchingData(taskType.toUpperCase()));
