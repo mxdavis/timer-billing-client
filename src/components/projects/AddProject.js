@@ -12,7 +12,8 @@ class AddProject extends Component {
     this.state = {
       name: '',
       bill_rate: '',
-      clientId: this.props.clientId
+      clientId: this.props.clientId,
+      clientName: this.props.clientName
     }
   }
   
@@ -32,7 +33,6 @@ class AddProject extends Component {
   render() {
     return (
       <div>
-        {/*{this.state.redirect ? <Redirect to="/clients"/> : null}*/}
         <form className="uk-form" onSubmit={this.handleOnSubmit}>
           <fieldset>
               <legend>Add Project</legend>
@@ -54,10 +54,6 @@ class AddProject extends Component {
                 onChange={this.handleOnChange}
                 value={this.state.bill_rate} />
               </div>
-              <input
-                type="hidden"
-                name={this.props.clientID}
-                />
               <input
             type="submit"
             value="Add Project" />
