@@ -18,8 +18,8 @@ class Clients extends Component {
      {this.props.clientArray.clients.map(client => <Client client={client}/>)}
     </div> : 
     this.props.clientArray.clients === undefined? 
-    <h3> Please wait for your clients to load </h3> :
-    <h3> Seems you have no clients, please add some! </h3>
+    <h3> Seems you have no clients, please add some! </h3> :
+    <h3>  Please wait for your clients to load </h3>
   }
 
  
