@@ -15,6 +15,7 @@ import Clients from './clients/Clients'
 import AddProject from './projects/AddProject'
 import Home from './Home'
 import Navbar from './Navbar'
+import Auth from './auth/Auth'
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
           <Navbar />
           <Switch>
             <Route exact path = "/" component={Home}/>
+            <Route path = "/signin" component={Auth}/>
             <Route path = "/tasks/new" component={AddTask}/>
             <Route path = "/tasks" component={Tasks}/>
             <Route path = "/clients/" component={Clients}>
