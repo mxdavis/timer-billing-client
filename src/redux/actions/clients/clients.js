@@ -8,6 +8,20 @@ export function clients(clients){
   }
 }
 
+export function addProjectToClient(project){
+  return {
+    type: 'ADD_PROJECT_TO_CLIENT',
+    project
+  }
+}
+
+export function addClient(client){
+  return {
+    type: 'ADD_CLIENT',
+    client
+  }
+}
+
 export function fetchClients() {
   return dispatch => {
     dispatch(startFetchingData("CLIENTS"))
