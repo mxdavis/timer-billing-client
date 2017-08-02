@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router, 
   Route, 
-  Switch,
-  Redirect,
-  NavLink
+  Switch
 } from 'react-router-dom'
 
 import '../styles/navbar.css'
