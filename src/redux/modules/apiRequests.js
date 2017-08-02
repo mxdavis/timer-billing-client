@@ -1,13 +1,10 @@
 import fetch from 'isomorphic-fetch'
-
-// TODO, need to know who the current user is and adjust url accordingly
-// if no user, then redirect to signin
-const api_url = 'http://localhost:3000/api/v1/users/1/'
+import { API_URL } from '../../global'
 
 export default {
 
   get(url){
-    return fetch(api_url + url, {
+    return fetch(API_URL + url, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -17,7 +14,7 @@ export default {
   },
 
   post(url, body) {
-  return fetch(api_url + url, {
+  return fetch(API_URL + url, {
     method: 'POST',
     headers: {
       'Accept': 'application/json',
