@@ -9,7 +9,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 import {fetchClients } from '../../redux/actions/clients/clients'
 import apiRequest from '../../redux/modules/apiRequests'
-import {addTask} from '../../redux/actions/tasks/tasks'
+import {addTask, removeTask} from '../../redux/actions/tasks/tasks'
 
 
 class AddTask extends Component {
@@ -50,6 +50,12 @@ class AddTask extends Component {
 		this.props.closeModal ? this.props.closeModal() : null
     this.setState({redirect:true})
   }
+
+	handleDelete = event => {
+		event.preventDefault();
+    apiRequest.delete(`/tasks/${this.state.task_id}/`, this.state)
+		this.props.removeTask(this.state)
+	}
 
 	handleDateChange = date => {
     this.setState({
@@ -193,6 +199,11 @@ class AddTask extends Component {
 									type="submit"
 									value={!this.isEmpty(this.props.task) ? "Update Task" : "Save Task"} />
 								</div>
+								{!this.isEmpty(this.props.task) ? <div className="uk-width-2-2 uk-text-center"><button
+								  onClick={this.handleDelete} 
+								  type="delete"
+									value="Delete Task"
+									>X</button></div> : null}
 							</div>
           </fieldset>
         </form>
@@ -210,7 +221,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { fetchClients, addTask }, dispatch);
+    { fetchClients, addTask, removeTask }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddTask);
