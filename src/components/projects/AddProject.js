@@ -14,14 +14,13 @@ class AddProject extends Component {
       name: '',
       bill_rate: '',
       clientId: this.props.clientId,
-      redirect: false
+      // redirect: false
     }
   }
   
   handleOnSubmit = event => {
     event.preventDefault();
-    // debugger
-    // apiRequest.post(`projects/`, this.state)
+    apiRequest.post(`projects/`, this.state)
     this.props.addProjectToClient(this.state)
     this.setState({name: '', bill_rate: ''})
   }
@@ -45,7 +44,8 @@ class AddProject extends Component {
                 type="text"
                 placeholder="Project Name"
                 name="name"
-                onChange={this.handleOnChange} />
+                onChange={this.handleOnChange}
+                value={this.state.name} />
               </div>
               <div className="uk-form-row">
                 <legend>Project Bill Rate</legend>
@@ -53,7 +53,8 @@ class AddProject extends Component {
                 type="text"
                 placeholder="Project Bill Rate"
                 name="bill_rate"
-                onChange={this.handleOnChange} />
+                onChange={this.handleOnChange}
+                value={this.state.bill_rate} />
               </div>
               <input
                 type="hidden"
