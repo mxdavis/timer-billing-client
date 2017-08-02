@@ -14,30 +14,21 @@ import AddClient from './clients/AddClient'
 import Clients from './clients/Clients'
 import AddProject from './projects/AddProject'
 import Home from './Home'
+import Navbar from './Navbar'
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="App">
-          <nav className="uk-navbar fixed">
-            <div className="uk-navbar-flip">
-              <ul className="uk-navbar-nav">
-                <li><NavLink to="/">Home</NavLink></li>
-                <li><NavLink to="/signin">Sign In</NavLink></li>
-                <li><NavLink to="/tasks/new">Add Task</NavLink></li>
-                <li><NavLink to="/clients">Clients</NavLink></li>
-                <li><NavLink to="/tasks">Tasks</NavLink></li>
-              </ul>
-            </div>
-          </nav>  
+          <Navbar />
           <Switch>
             <Route exact path = "/" component={Home}/>
             <Route path = "/tasks/new" component={AddTask}/>
             <Route path = "/tasks" component={Tasks}/>
             <Route path = "/clients/" component={Clients}>
-            <Route path = "/clients/new" component={AddClient}/>
-            <Route path = "clients/projects/new" component={AddProject}/>
+              <Route path = "/clients/new" component={AddClient}/>
+              <Route path = "clients/projects/new" component={AddProject}/>
             </Route>
           </Switch>
         </div>
