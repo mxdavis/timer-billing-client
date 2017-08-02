@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import Select, { Creatable } from 'react-select';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import {Redirect} from 'react-router-dom';
 import 'react-datepicker/dist/react-datepicker.css';
 
 import {fetchClients } from '../../redux/actions/clients/clients'
@@ -22,7 +23,7 @@ class AddTask extends Component {
 			startDate: moment(),
 			bill_time: '',
 			description: '',
-			gotDefaultDropdown: false
+			redirect: false
     }
   }
 
@@ -43,7 +44,8 @@ class AddTask extends Component {
 	handleOnSubmit = event => {
     event.preventDefault();
     apiRequest.post('tasks/', this.state)
-    this.props.router.push('/tasks');
+		this.props.closeModal()
+    this.setState({redirect:true})
   }
 
 	handleDateChange = date => {
@@ -129,6 +131,7 @@ class AddTask extends Component {
   render() {
     return (
       <div className="uk-position-center">
+			{this.state.redirect ? <Redirect to="/tasks" /> : null}
         <form className="uk-form" onSubmit={this.handleOnSubmit}>
           <fieldset className="color-light">
               <legend className="uk-text-center"><h2>Add Task</h2></legend>
