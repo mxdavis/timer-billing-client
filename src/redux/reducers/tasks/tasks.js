@@ -14,7 +14,6 @@ export default function tasks(state = {
         billed_tasks: billed_tasks
       });
      case 'ADD_UNBILLED_TASK':
-     debugger
       const tasksWithoutChangedTask = state.unbilled_tasks.filter(t => t.task_id !== action.task.task_id)
       const changedTask = Object.assign({}, action.task, {
         client: action.task.clientValue.label,
@@ -25,6 +24,9 @@ export default function tasks(state = {
         date: action.task.startDate["_i"]})
       const allTasksWithChanged = tasksWithoutChangedTask.concat(changedTask)
       return Object.assign({}, state, {unbilled_tasks: allTasksWithChanged})
+    case 'REMOVE_UNBILLED_TASK':
+      const tasksWithoutDeletedTask = state.unbilled_tasks.filter(t => t.task_id !== action.task.task_id)
+      return Object.assign({}, state, {unbilled_tasks: tasksWithoutDeletedTask})
     default:
       return state;
   }
