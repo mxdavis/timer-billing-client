@@ -25,7 +25,7 @@ export function addClient(client){
 export function fetchClients() {
   return dispatch => {
     dispatch(startFetchingData("CLIENTS"))
-    apiRequest.get('users/1/clients')
+    apiRequest.get('clients')
      .then(data => {
         dispatch(clients(data))
         dispatch(stopFetchingData("CLIENTS"))
