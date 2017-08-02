@@ -5,19 +5,18 @@ import AddProject from '../projects/AddProject'
 
 const currentProjects = (projects) => {
   return projects.length > 0 ?
-    <div className="uk-overflow-auto">
-      <table className="uk-table uk-table-hover uk-table-middle uk-table-divider uk-table-striped uk-table-responsive">
-        <thead>
-          <tr>
-            <th className="uk-table-expand">Project Name</th>
-            <th className="uk-table-expand">Bill Rate</th>
-          </tr>
-        </thead>
-      <tbody>
-          {projects.map(p => <Project project={p} />)}
-      </tbody>
-    </table>
-  </div> :
+    <table className="uk-table uk-table-middle uk-table-divider uk-table-striped uk-table-responsive">
+      <thead>
+        <tr>
+          <th className="uk-table-expand">Project Name</th>
+          <th className="uk-table-expand">Bill Rate</th>
+        </tr>
+      </thead>
+    <tbody>
+        {projects.map(p => <Project project={p} />)}
+    </tbody>
+  </table>
+  :
   <h3>Please add a new project!</h3>
 }
 
