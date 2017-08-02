@@ -1,10 +1,12 @@
 export default function updateClient(state = [], action) {
   switch (action.type) {
     case 'ADD_CLIENT':
-      return Object.assign({}, state.clients)
+      const newClient = Object.assign({}, action.client, {projects: []})
+      const addClients = state.clients.concat(newClient)
+      return Object.assign({}, state, {clients: addClients})
     case 'UPDATE_CLIENTS':
-      const clients = action.clients.filter(c => c != null)
-      return Object.assign({}, state, {clients: clients})
+      const updateClients = action.clients.filter(c => c != null)
+      return Object.assign({}, state, {clients: updateClients})
     case 'ADD_PROJECT_TO_CLIENT':
       const client = state.clients.filter(c => c.id === action.project.clientId)
       const updatedProjects = [...client[0].projects, action.project]
@@ -16,8 +18,6 @@ export default function updateClient(state = [], action) {
                                      : client
        )
     }
-    case "ADD_CLIENT":
-     return [...state.clients, action.client]
     default:
       return state;
   }
