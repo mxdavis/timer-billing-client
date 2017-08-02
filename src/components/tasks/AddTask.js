@@ -45,7 +45,7 @@ class AddTask extends Component {
 
 	handleOnSubmit = event => {
     event.preventDefault();
-    apiRequest.post('tasks/', this.state)
+    apiRequest.post('/tasks/', this.state)
 		this.props.addTask(this.state)
 		this.props.closeModal ? this.props.closeModal() : null
     this.setState({redirect:true})

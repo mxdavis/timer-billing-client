@@ -18,7 +18,7 @@ class AddProject extends Component {
   
   handleOnSubmit = event => {
     event.preventDefault();
-    apiRequest.post(`projects/`, this.state)
+    apiRequest.post(`/projects/`, this.state)
     this.props.addProjectToClient(this.state)
     this.setState({name: '', bill_rate: ''})
   }

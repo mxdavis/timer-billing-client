@@ -17,7 +17,7 @@ class AddClient extends Component {
   
   handleOnSubmit = event => {
     event.preventDefault();
-    apiRequest.post('clients/', this.state)
+    apiRequest.post('/clients/', this.state)
     this.props.addClient(this.state)
     this.setState({name: '', email: ''})
   }
