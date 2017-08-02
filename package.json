@@ -2,8 +2,8 @@
   "name": "timer-billing-client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:3000/",
-  "homepage": "http://localhost:3000/",
+  "proxy": "http://bill-timer-client.herokuapp.com/",
+  "homepage": "http://bill-timer-client.herokuapp.com/",
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
     "moment": "^2.18.1",
