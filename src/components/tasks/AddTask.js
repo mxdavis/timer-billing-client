@@ -23,7 +23,8 @@ class AddTask extends Component {
 			startDate: moment(),
 			bill_time: '',
 			description: '',
-			redirect: false
+			redirect: false,
+			task_id: false
     }
   }
 
@@ -44,7 +45,7 @@ class AddTask extends Component {
 	handleOnSubmit = event => {
     event.preventDefault();
     apiRequest.post('tasks/', this.state)
-		this.props.closeModal()
+		this.props.closeModal? this.props.closeModal() : null
     this.setState({redirect:true})
   }
 
@@ -79,6 +80,14 @@ class AddTask extends Component {
 
   componentDidMount = ()=>{
     this.props.fetchClients()
+		if (!this.isEmpty(this.props.task)){
+			this.setState({
+				task_id: this.props.task.task_id,
+				bill_time: this.props.task.bill_time,
+				description: this.props.task.description,
+				startDate: this.props.task.date
+			})
+		}
   }
 
   componentDidUpdate = () => {
