@@ -30,7 +30,7 @@ export default class Task extends Component {
         position: 'fixed',
         right: 'auto',
         top: '15%', // start from center
-        transform: 'translate(-50%,-' + '10px' + ')', // adjust top "up" based on height
+        transform: 'translate(-50%, -10px)',
         width: '40%',
         maxWidth: '40rem'
       },
