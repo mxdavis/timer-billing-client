@@ -25,7 +25,7 @@ export function addTask(task){
 export function fetchTasks(taskType) {
   return dispatch => {
     dispatch(startFetchingData(taskType.toUpperCase()));
-    apiRequest.get(`${taskType}_tasks`)
+    apiRequest.get(`/${taskType}_tasks/`)
      .then(data => {
         dispatch(tasks(data, taskType))
         dispatch(stopFetchingData(taskType.toUpperCase()));
