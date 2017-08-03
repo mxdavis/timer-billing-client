@@ -37,13 +37,13 @@ class AddTask extends Component {
     return true;
   }
 
-	handleOnChange = event => {
+  handleOnChange = event => {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
-	handleOnSubmit = event => {
+  handleOnSubmit = event => {
     event.preventDefault();
     apiRequest.post('/tasks/', this.state)
     this.props.addTask(this.state)
@@ -51,7 +51,7 @@ class AddTask extends Component {
     this.setState({redirect:true})
   }
 
-	handleDelete = event => {
+  handleDelete = event => {
     event.preventDefault();
     apiRequest.delete(`/tasks/${this.state.task_id}/`, this.state)
     this.props.removeTask(this.state)
