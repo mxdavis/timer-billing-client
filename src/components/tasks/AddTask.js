@@ -16,8 +16,8 @@ class AddTask extends Component {
   constructor(props){
     super(props)
     this.state = {
-      clientData: [],
-      clientArray: [],
+			clientData: [],
+			clientArray: [],
 			clientValue: {},
 			projectValue: {},
 			startDate: moment(),
