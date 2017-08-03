@@ -25,7 +25,8 @@ class AddTask extends Component {
 			bill_time: '',
 			description: '',
 			redirect: false,
-			task_id: false
+			task_id: false,
+			firstLoadOnEdit: false
     }
   }
 
@@ -64,15 +65,18 @@ class AddTask extends Component {
   }
   
   convertClientstoDropdown = () => {
-    if (!this.isEmpty(this.props.clientArray) && this.isEmpty(this.state.projectData)){
+    if (!this.isEmpty(this.props.clientArray) && (this.isEmpty(this.state.projectData) || this.state.firstLoadOnEdit)){
       const clientData =  this.props.clientArray.clients.map(client => {
         var rObj = {};
         rObj["value"] = client.id;
         rObj["label"] = client.name
         return rObj;
       })   
-    this.setState({clientData})
-	  }
+			this.setState({clientData})
+			if (this.state.firstLoadOnEdit){
+				this.convertProjectstoDropdown(this.props.task.client_id)
+			}
+		}
   }
 
 	convertProjectstoDropdown = (clientId) => {
@@ -97,7 +101,8 @@ class AddTask extends Component {
 				startDate: moment(this.props.task.date, 'YYYY-MM-DD'),
 				clientValue: {value: this.props.task.client_id, label: this.props.task.client},
 				projectValue: {value: this.props.task.project_id, label: this.props.task.project},
-				bill_rate: this.props.task.bill_rate
+				bill_rate: this.props.task.bill_rate,
+				firstLoadOnEdit: true
 			})
 		}
   }
@@ -115,6 +120,7 @@ class AddTask extends Component {
 			const clientId = value.value
 			this.setState({clientValue: value})
 			this.convertProjectstoDropdown(clientId)
+			this.setState({firstLoadOnEdit: false})
 		}
   }
 
@@ -132,7 +138,7 @@ class AddTask extends Component {
 			value={this.state.projectValue.value}
 			options={this.state.projectData}
 			onChange={this.logProjectChange}
-			value={this.isEmpty(this.state.projectValue) && !this.isEmpty(this.props.task) ? {label: this.props.task.project, value: this.props.task.project_id} : this.state.projectValue}
+			value={this.state.projectValue}
 		/> 
 	}
 
@@ -145,7 +151,7 @@ class AddTask extends Component {
 				value={this.state.clientValue.value}
 				options={this.state.clientData}
 				onChange={this.logClientChange}
-				value={this.isEmpty(this.state.clientValue) && !this.isEmpty(this.props.task) ? {label: this.props.task.client, value: this.props.task.client_id} : this.state.clientValue}
+				value={this.state.clientValue}
 			/> 
 	}
  
