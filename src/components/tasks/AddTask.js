@@ -156,7 +156,7 @@ class AddTask extends Component {
   render() {
     return (
       <div className="uk-position-center">
-			{this.state.redirect ? <Redirect to="/tasks" /> : null}
+      {this.state.redirect ? <Redirect to="/tasks" /> : null}
         <form className="uk-form" onSubmit={this.handleOnSubmit}>
           <fieldset className="color-light">
               <legend className="uk-text-center"><h2>Add Task</h2></legend>
