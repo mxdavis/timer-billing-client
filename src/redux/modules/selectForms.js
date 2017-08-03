@@ -1,3 +1,5 @@
+import {Redirect} from 'react-router-dom';
+
 import { fetchClients } from '../../redux/actions/clients/clients'
 
 export default {
@@ -6,10 +8,8 @@ export default {
     return dispatch => {
       if (!this.state.clients.clients){
         dispatch(fetchClients)
-        //what happens if no one has any clients yet
         if (!this.state.clients.clients && !this.state.fetchingData.includes("CLIENTS")){
-          //redirect to add client page
-          return "you need to add clients"
+          return <Redirect to='/cients/new'/>
         }
       }
       return this.state.clients.clients.map(client => {
