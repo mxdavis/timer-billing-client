@@ -25,7 +25,7 @@ class AddTask extends Component {
 			description: '',
 			redirect: false,
 			task_id: false,
-			firstLoadOnEdit: false
+			isEditing: false
     }
   }
 
@@ -64,7 +64,7 @@ class AddTask extends Component {
   }
   
   convertClientstoDropdown = () => {
-    if (!this.isEmpty(this.props.clientArray) && (this.isEmpty(this.state.projectData) || this.state.firstLoadOnEdit)){
+    if (!this.isEmpty(this.props.clientArray) && (this.isEmpty(this.state.projectData) || this.state.isEditing)){
       const clientData =  this.props.clientArray.clients.map(client => {
         var rObj = {};
         rObj["value"] = client.id;
@@ -72,7 +72,7 @@ class AddTask extends Component {
         return rObj;
       })   
 			this.setState({clientData})
-			if (this.state.firstLoadOnEdit){
+			if (this.state.isEditing){
 				this.convertProjectstoDropdown(this.props.task.client_id)
 			}
 		}
@@ -101,7 +101,7 @@ class AddTask extends Component {
 				clientValue: {value: this.props.task.client_id, label: this.props.task.client},
 				projectValue: {value: this.props.task.project_id, label: this.props.task.project},
 				bill_rate: this.props.task.bill_rate,
-				firstLoadOnEdit: true
+				isEditing: true
 			})
 		}
   }
@@ -119,7 +119,6 @@ class AddTask extends Component {
 			const clientId = value.value
 			this.setState({clientValue: value})
 			this.convertProjectstoDropdown(clientId)
-			this.setState({firstLoadOnEdit: false})
 		}
   }
 
@@ -202,9 +201,9 @@ class AddTask extends Component {
 								<div className="uk-width-2-2 uk-text-center">
 									<input
 									type="submit"
-									value={!this.isEmpty(this.props.task) ? "Update Task" : "Save Task"} />
+									value={this.state.isEditing ? "Update Task" : "Save Task"} />
 								</div>
-								{!this.isEmpty(this.props.task) ? <div className="uk-width-2-2 uk-text-center"><button
+								{this.state.isEditing ? <div className="uk-width-2-2 uk-text-center"><button
 								  onClick={this.handleDelete} 
 								  type="delete"
 									value="Delete Task"
