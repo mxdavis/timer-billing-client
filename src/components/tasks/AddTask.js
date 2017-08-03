@@ -25,7 +25,8 @@ class AddTask extends Component {
 			bill_time: '',
 			description: '',
 			redirect: false,
-			task_id: false
+			task_id: false,
+			isEditing: false
     }
   }
 
@@ -64,15 +65,18 @@ class AddTask extends Component {
   }
   
   convertClientstoDropdown = () => {
-    if (!this.isEmpty(this.props.clientArray) && this.isEmpty(this.state.projectData)){
+    if (!this.isEmpty(this.props.clientArray) && (this.isEmpty(this.state.projectData) || this.state.isEditing)){
       const clientData =  this.props.clientArray.clients.map(client => {
         var rObj = {};
         rObj["value"] = client.id;
         rObj["label"] = client.name
         return rObj;
       })   
-    this.setState({clientData})
-	  }
+			this.setState({clientData})
+			if (this.state.isEditing){
+				this.convertProjectstoDropdown(this.props.task.client_id)
+			}
+		}
   }
 
 	convertProjectstoDropdown = (clientId) => {
@@ -97,7 +101,8 @@ class AddTask extends Component {
 				startDate: moment(this.props.task.date, 'YYYY-MM-DD'),
 				clientValue: {value: this.props.task.client_id, label: this.props.task.client},
 				projectValue: {value: this.props.task.project_id, label: this.props.task.project},
-				bill_rate: this.props.task.bill_rate
+				bill_rate: this.props.task.bill_rate,
+				isEditing: true
 			})
 		}
   }
