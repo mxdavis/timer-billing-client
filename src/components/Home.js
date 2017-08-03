@@ -14,7 +14,7 @@ const Home = (props) => {
       </div>
       <div className="padding-top">
         <p className="padding-top">Create clients, projects, and tasks, and bill your clients properly</p>
-        <p> This is an open sourced project, so if you would like to contribute please put go to our 
+        <p> This is an open sourced project, so if you would like to contribute please go to our 
         <a href="https://github.com/mxdavis/timer-billing-client" target="_blank" rel="noopener noreferrer"> Github Page</a></p>
         <p>Created by <a href="https://github.com/mxdavis/" target="_blank" rel="noopener noreferrer">mxdavis</a> as a project at the Flatiron School</p></div>
       </div>
