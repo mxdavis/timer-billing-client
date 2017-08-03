@@ -159,55 +159,61 @@ class AddTask extends Component {
       {this.state.redirect ? <Redirect to="/tasks" /> : null}
         <form className="uk-form" onSubmit={this.handleOnSubmit}>
           <fieldset className="color-light">
-              <legend className="uk-text-center"><h2>Add Task</h2></legend>
-              <div className="uk-form-row">
-								<legend>Select Client</legend>
-								{this.clientForm()}
-							</div>
-              <div className="uk-form-row">
-								<legend>Select Project</legend>
-								{this.projectForm()}
-							</div>
-              <div className="uk-form-row">
-								<legend>Description</legend>
-                <textarea 
-								className="uk-width-2-2"
-								placeholder="Description here"
-								rows="10"
-								name="description"
-								onChange={this.handleOnChange}
-								defaultValue={!this.isEmpty(this.props.task) ? this.props.task.description : null}
-								/>
-              </div>
+            <legend className="uk-text-center"><h2>Add Task</h2></legend>
+            <div className="uk-form-row">
+              <legend>Select Client</legend>
+              {this.clientForm()}
+            </div>
+            <div className="uk-form-row">
+              <legend>Select Project</legend>
+              {this.projectForm()}
+            </div>
+            <div className="uk-form-row">
+              <legend>Description</legend>
+              <textarea 
+                className="uk-width-2-2"
+                placeholder="Description here"
+                rows="10"
+                name="description"
+                onChange={this.handleOnChange}
+                defaultValue={!this.isEmpty(this.props.task) ? this.props.task.description : null}
+              />
+            </div>
 
-              <div className="uk-grid uk-form-row">
-								<div className="uk-width-1-2">
-								  <legend>Select Date</legend>
-									<DatePicker
-										selected={this.state.startDate}
-										onChange={this.handleDateChange}
-									/>
-								</div>
-								<div className="uk-width-1-2">
-								  <legend>Billing Time</legend>
-										<input
-											type="text"
-											placeholder="Format in 01:30 or 1.5"
-											name="bill_time"
-											onChange={this.handleOnChange}
-											defaultValue={!this.isEmpty(this.props.task) ? this.props.task.bill_time : null}
-										/> 
-								</div>
-								<div className="uk-width-2-2 uk-text-center">
-									<input
-									type="submit"
-									value={this.state.isEditing ? "Update Task" : "Save Task"} />
-								</div>
-								{this.state.isEditing ? <div className="uk-width-2-2 uk-text-center"><button
-								  onClick={this.handleDelete} 
-								  type="delete"
-									value="Delete Task"
-									>X</button></div> : null}
+            <div className="uk-grid uk-form-row">
+              <div className="uk-width-1-2">
+                <legend>Select Date</legend>
+                <DatePicker
+                  selected={this.state.startDate}
+                  onChange={this.handleDateChange}
+                />
+              </div>
+              <div className="uk-width-1-2">
+                <legend>Billing Time</legend>
+                <input
+                  type="text"
+                  placeholder="Format in 01:30 or 1.5"
+                  name="bill_time"
+                  onChange={this.handleOnChange}
+                  defaultValue={!this.isEmpty(this.props.task) ? this.props.task.bill_time : null}
+                /> 
+              </div>
+              <div className="uk-width-2-2 uk-text-center">
+                <input
+                  type="submit"
+                  value={this.state.isEditing ? "Update Task" : "Save Task"} 
+                />
+              </div>
+              {this.state.isEditing ? 
+                <div className="uk-width-2-2 uk-text-center">
+                  <button
+                    onClick={this.handleDelete} 
+                    type="delete"
+                    value="Delete Task"
+                  >X</button>
+                </div> : 
+                null
+              }
 							</div>
           </fieldset>
         </form>
