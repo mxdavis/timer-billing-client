@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 
 import apiRequest from '../../redux/modules/apiRequests'
-import {addProjectToClient} from '../../redux/actions/clients/clients'
+import { addProjectToClient } from '../../redux/actions/clients/clients'
 
 class AddProject extends Component {
 
