@@ -11,7 +11,6 @@ import {fetchClients } from '../../redux/actions/clients/clients'
 import apiRequest from '../../redux/modules/apiRequests'
 import {addTask, removeTask} from '../../redux/actions/tasks/tasks'
 
-
 class AddTask extends Component {
 
   constructor(props){
