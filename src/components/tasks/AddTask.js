@@ -16,23 +16,23 @@ class AddTask extends Component {
   constructor(props){
     super(props)
     this.state = {
-			clientData: [],
-			clientArray: [],
-			clientValue: {},
-			projectValue: {},
-			startDate: moment(),
-			bill_time: '',
-			description: '',
-			redirect: false,
-			task_id: false,
-			isEditing: false
+      clientData: [],
+      clientArray: [],
+      clientValue: {},
+      projectValue: {},
+      startDate: moment(),
+      bill_time: '',
+      description: '',
+      redirect: false,
+      task_id: false,
+      isEditing: false
     }
   }
 
   isEmpty = (array) => {
     for(var key in array) {
-        if(array.hasOwnProperty(key))
-            return false;
+      if(array.hasOwnProperty(key))
+          return false;
     }
     return true;
   }
@@ -46,18 +46,18 @@ class AddTask extends Component {
 	handleOnSubmit = event => {
     event.preventDefault();
     apiRequest.post('/tasks/', this.state)
-		this.props.addTask(this.state)
-		this.props.closeModal ? this.props.closeModal() : null
+    this.props.addTask(this.state)
+    this.props.closeModal ? this.props.closeModal() : null
     this.setState({redirect:true})
   }
 
 	handleDelete = event => {
-		event.preventDefault();
+    event.preventDefault();
     apiRequest.delete(`/tasks/${this.state.task_id}/`, this.state)
-		this.props.removeTask(this.state)
+    this.props.removeTask(this.state)
 	}
 
-	handleDateChange = date => {
+  handleDateChange = date => {
     this.setState({
       startDate: date
     });
@@ -71,87 +71,87 @@ class AddTask extends Component {
         rObj["label"] = client.name
         return rObj;
       })   
-			this.setState({clientData})
-			if (this.state.isEditing){
-				this.convertProjectstoDropdown(this.props.task.client_id)
-			}
-		}
+    this.setState({clientData})
+    if (this.state.isEditing){
+      this.convertProjectstoDropdown(this.props.task.client_id)
+      }
+    }
   }
 
-	convertProjectstoDropdown = (clientId) => {
+  convertProjectstoDropdown = (clientId) => {
     const projectOfClient = this.props.clientArray.clients.filter(c => c.id === clientId)
-		const projectData =  projectOfClient[0].projects.map(project => {
-			var rObj = {};
-			rObj["value"] = project.id;
-			rObj["label"] = project.name
-			return rObj;
-		})   
-	this.setState({projectData})
-	}
+	  const projectData =  projectOfClient[0].projects.map(project => {
+	    var rObj = {};
+	    rObj["value"] = project.id;
+	    rObj["label"] = project.name
+	    return rObj;
+      })   
+    this.setState({projectData})
+  }
 
   componentDidMount = ()=>{
 
     this.props.fetchClients()
-		if (!this.isEmpty(this.props.task)){
-			this.setState({
-				task_id: this.props.task.task_id,
-				bill_time: this.props.task.bill_time,
-				description: this.props.task.description,
-				startDate: moment(this.props.task.date, 'YYYY-MM-DD'),
-				clientValue: {value: this.props.task.client_id, label: this.props.task.client},
-				projectValue: {value: this.props.task.project_id, label: this.props.task.project},
-				bill_rate: this.props.task.bill_rate,
-				isEditing: true
-			})
-		}
+    if (!this.isEmpty(this.props.task)){
+      this.setState({
+        task_id: this.props.task.task_id,
+        bill_time: this.props.task.bill_time,
+        description: this.props.task.description,
+        startDate: moment(this.props.task.date, 'YYYY-MM-DD'),
+        clientValue: {value: this.props.task.client_id, label: this.props.task.client},
+        projectValue: {value: this.props.task.project_id, label: this.props.task.project},
+        bill_rate: this.props.task.bill_rate,
+        isEditing: true
+      })
+    }
   }
 
   componentDidUpdate = () => {
-		if (this.isEmpty(this.state.clientData)){
+    if (this.isEmpty(this.state.clientData)){
       this.convertClientstoDropdown()
-		}
+    }
   }
 
-	logClientChange = (value) => {
-		if (value === null){
-			this.setState({clientValue: {}, projectValue: {}, projectData: []})
-		} else {
-			const clientId = value.value
-			this.setState({clientValue: value})
-			this.convertProjectstoDropdown(clientId)
-		}
+  logClientChange = (value) => {
+    if (value === null){
+      this.setState({clientValue: {}, projectValue: {}, projectData: []})
+    } else {
+      const clientId = value.value
+      this.setState({clientValue: value})
+      this.convertProjectstoDropdown(clientId)
+    }
   }
 
-	logProjectChange = (value) => {
-		if (value === null){
-			this.setState({projectValue: {}})
-		} else {
-		  this.setState({projectValue: value})
-		}
+  logProjectChange = (value) => {
+    if (value === null){
+      this.setState({projectValue: {}})
+    } else {
+      this.setState({projectValue: value})
+    }
   }
   
-	projectForm = () => {
-		return 	<Creatable
-			name={this.state.projectValue.label}
-			value={this.state.projectValue.value}
-			options={this.state.projectData}
-			onChange={this.logProjectChange}
-			value={this.state.projectValue}
-		/> 
-	}
+  projectForm = () => {
+    return 	<Creatable
+      name={this.state.projectValue.label}
+      value={this.state.projectValue.value}
+      options={this.state.projectData}
+      onChange={this.logProjectChange}
+      value={this.state.projectValue}
+    /> 
+  }
 
-	clientForm = () => {
-		return this.isEmpty(this.state.clientData) ?
-			<h1>Wait for form to load</h1> :
+  clientForm = () => {
+    return this.isEmpty(this.state.clientData) ?
+      <h1>Wait for form to load</h1> :
 
-			<Select
-				name={this.state.clientValue.label}
-				value={this.state.clientValue.value}
-				options={this.state.clientData}
-				onChange={this.logClientChange}
-				value={this.state.clientValue}
-			/> 
-	}
+      <Select
+        name={this.state.clientValue.label}
+        value={this.state.clientValue.value}
+        options={this.state.clientData}
+        onChange={this.logClientChange}
+        value={this.state.clientValue}
+      /> 
+  }
  
   render() {
     return (
