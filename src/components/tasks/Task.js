@@ -7,7 +7,7 @@ export default class Task extends Component {
     constructor(props){
     super(props)
 
-    this.state = { imodalIsOpen: false}
+    this.state = { modalIsOpen: false}
  
   }
 
